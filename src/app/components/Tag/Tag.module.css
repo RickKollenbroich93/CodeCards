@@ -1,0 +1,15 @@
+.tag {
+  border: solid 2px var(--bg-tag);
+  border-radius: 10px;
+  padding: 0.7em 1.5em;
+  text-transform: uppercase;
+  background: var(--bg-tag);
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+
+.active {
+  border-color: var(--color-primary);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+}
