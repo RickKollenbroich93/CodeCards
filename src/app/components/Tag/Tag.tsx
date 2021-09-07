@@ -1,10 +1,11 @@
 import React from 'react';
 import styles from './Tag.module.css';
+import type { ReactNode } from 'react';
 
 type TagProps = {
   active?: boolean;
   onClick?: () => void;
-  children: React.ReactNode;
+  children: ReactNode;
   className?: string;
 };
 
