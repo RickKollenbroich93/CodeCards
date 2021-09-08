@@ -1,4 +1,5 @@
 import React from 'react';
+import HeaderSpacer from '../HeaderSpacer/HeaderSpacer';
 import Header from './Header';
 
 export default {
@@ -11,9 +12,25 @@ export default {
   },
 };
 
-export const mainHeader = (): JSX.Element => <Header>code#Cards</Header>;
+export const mainHeader = (): JSX.Element => (
+  <Header>
+    code
+    <HeaderSpacer />
+    Cards
+  </Header>
+);
 export const AddCollection = (): JSX.Element => (
-  <Header>Add#Collections</Header>
+  <Header>
+    Add
+    <HeaderSpacer />
+    Collections
+  </Header>
 );
 export const Collection = (): JSX.Element => <Header>Collections</Header>;
-export const NewCollection = (): JSX.Element => <Header>New#Collection</Header>;
+export const NewCollection = (): JSX.Element => (
+  <Header>
+    New
+    <HeaderSpacer />
+    Collection
+  </Header>
+);
