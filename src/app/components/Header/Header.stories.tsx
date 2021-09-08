@@ -11,7 +11,7 @@ export default {
   },
 };
 
-export const codeCards = (): JSX.Element => <Header>code#Cards</Header>;
+export const mainHeader = (): JSX.Element => <Header>code#Cards</Header>;
 export const AddCollection = (): JSX.Element => (
   <Header>Add#Collections</Header>
 );

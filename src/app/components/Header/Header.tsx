@@ -13,7 +13,6 @@ function Header({ children, className }: HeaderProps): JSX.Element {
       className={`${styles.headerContainer} ${className}
       }`}
     >
-      {' '}
       <span className={styles.headerBracket}> &lt; </span>
       <h1 className={styles.header}>{children}</h1>
       <span className={styles.headerBracket}> &gt; </span>
