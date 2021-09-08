@@ -1,0 +1,5 @@
+.headerSpacer {
+  color: var(--text-secondary);
+  font-family: var(--font-face);
+  font-size: 1.6rem;
+}
