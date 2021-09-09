@@ -11,17 +11,17 @@
   margin: 1.56rem;
 }
 
-.navigation .home {
+.home {
   height: 1.5rem;
   width: auto;
 }
 
-.navigation .search {
+.search {
   height: 1.5rem;
   width: auto;
 }
 
-.navigation .bookmark {
+.bookmark {
   height: 1.6rem;
   width: auto;
 }
