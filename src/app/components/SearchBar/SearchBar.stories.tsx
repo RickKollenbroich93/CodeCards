@@ -16,7 +16,7 @@ export const Search = (): JSX.Element => (
     type="search"
     handleSubmit={() => console.log('Submitted')}
     searchValue=""
-    setValue={(Value) => console.log(Value)}
+    onChange={(event) => console.log(event.target.value)}
   />
 );
 export const EnterNewCollection = (): JSX.Element => (
@@ -24,6 +24,6 @@ export const EnterNewCollection = (): JSX.Element => (
     type="add"
     handleSubmit={() => console.log('Submitted')}
     searchValue=""
-    setValue={(Value) => console.log(Value)}
+    onChange={(event) => console.log(event.target.value)}
   />
 );
