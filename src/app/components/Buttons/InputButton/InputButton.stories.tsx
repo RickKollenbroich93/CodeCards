@@ -13,12 +13,12 @@ export default {
   },
 };
 
-export const Login = (): JSX.Element => (
+export const SearchButton = (): JSX.Element => (
   <InputButton>
     <SearchIcon />
   </InputButton>
 );
-export const Register = (): JSX.Element => (
+export const AddButton = (): JSX.Element => (
   <InputButton>
     <AddIcon />
     ADD
