@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 import React from 'react';
-import classes from './InputButton.module.css';
+import classes from './SubmitButton.module.css';
 
 type ButtonProps = {
   children: ReactNode;
