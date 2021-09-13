@@ -1,17 +1,10 @@
 .header {
   color: var(--color-primary);
   font-family: var(--header-font);
+  justify-self: center;
 }
-.headerContainer {
-  display: flex;
-  min-height: 2.5rem;
-}
+
 h2 {
   margin: 0;
   font-size: 1.2rem;
-}
-.headerBracket {
-  color: var(--text-secondary);
-  font-family: var(--font-face);
-  font-size: 1.7rem;
 }

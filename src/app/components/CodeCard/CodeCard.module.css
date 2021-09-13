@@ -1,7 +1,12 @@
 .codeContainer {
-  padding: 2rem;
+  gap: 5px;
+  display: grid;
 }
-
+.cardWrapper {
+  display: grid;
+  background-color: #2d2d2d;
+  border-radius: 20px;
+}
 .codeOutput {
   width: 100%;
   height: 20rem;
