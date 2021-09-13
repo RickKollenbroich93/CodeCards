@@ -4,7 +4,7 @@ import SearchIcon from '../../assets/SearchIcon';
 import InputButton from './SubmitButton';
 
 export default {
-  title: 'Component/Button',
+  title: 'Component/SubmitButton',
   component: InputButton,
   parameters: {
     backgrounds: {
