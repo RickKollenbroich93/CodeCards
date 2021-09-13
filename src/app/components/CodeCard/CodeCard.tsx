@@ -6,17 +6,22 @@ import WindowStateButton from '../Buttons/WindowStateButton/WindowStateButton';
 import FullScreenIcon from '../assets/FullScreenIcon';
 import TagGroup from '../TagGroup/TagGroup';
 import SubHeader from '../Header/SubHeader/SubHeader';
+import DescriptionBox from '../DescriptionBox/DescriptionBox';
 
 export type CardProps = {
+  layout?: 'compact' | 'detail';
   language: string;
   content: string;
   title: string;
+  description?: string;
 };
 
 export default function CodeCard({
   language,
   content,
   title,
+  layout = 'compact',
+  description,
 }: CardProps): JSX.Element {
   useEffect(() => {
     Prism.highlightAll();
@@ -41,11 +46,13 @@ export default function CodeCard({
             <code className={`language-${language}`}>{content}</code>
           </pre>
         </>
+
         <WindowStateButton>
           <FullScreenIcon />
         </WindowStateButton>
       </div>
       <TagGroup tagList={MockList} />
+      {layout === 'detail' && <DescriptionBox>{description}</DescriptionBox>}
     </div>
   );
 }

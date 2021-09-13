@@ -15,7 +15,15 @@ export const CardJs = (): JSX.Element => {
   return <CodeCard language="js" content="const a = 23;" title="JS-Card" />;
 };
 export const CardJsFullScreen = (): JSX.Element => {
-  return <CodeCard language="js" content="const a = 23;" title="JS-Card" />;
+  return (
+    <CodeCard
+      language="js"
+      content="const a = 23;"
+      title="JS-Card"
+      layout="detail"
+      description="Bla bla bla "
+    />
+  );
 };
 export const CardCSS = (): JSX.Element => {
   return (
