@@ -4,13 +4,11 @@ import styles from './CodeCard.module.css';
 import '../../prism.css';
 
 export type CardProps = {
-  layout?: 'detail' | 'compact';
   language: string;
   content: string;
 };
 
 export default function CodeCard({
-  layout = 'compact',
   language,
   content,
 }: CardProps): JSX.Element {
@@ -24,14 +22,11 @@ export default function CodeCard({
 
   return (
     <div className={styles.codeContainer}>
-      {layout === 'compact' && (
-        <>
-          {' '}
-          <pre className={styles.codeOutput}>
-            <code className={`language-${language}`}>{content.trim()}</code>
-          </pre>
-        </>
-      )}
+      <>
+        <pre className={styles.codeOutput}>
+          <code className={`language-${language}`}>{content}</code>
+        </pre>
+      </>
     </div>
   );
 }

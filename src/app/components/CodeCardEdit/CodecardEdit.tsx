@@ -13,7 +13,7 @@ export default function CodeCard({
   layout = 'compact',
   language,
 }: CardProps): JSX.Element {
-  const [content, setContent] = useState('Your Code');
+  const [content, setContent] = useState('//Write your code here');
   const charlimit = 35; // char limit per line
 
   function handleChange(event: ChangeEvent<HTMLTextAreaElement>) {

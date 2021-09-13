@@ -13,6 +13,9 @@ export default {
 export const CardJs = (): JSX.Element => {
   return <CodeCard language="js" content="const a = 23;" />;
 };
+export const CardJsFullScreen = (): JSX.Element => {
+  return <CodeCard language="js" content="const a = 23;" />;
+};
 export const CardCSS = (): JSX.Element => {
   return <CodeCard language="css" content=".background{background:white;}" />;
 };
