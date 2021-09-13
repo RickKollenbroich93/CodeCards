@@ -30,7 +30,7 @@
 }
 textarea {
   border: none;
-  overflow: none;
+  overflow: hidden;
   outline: none;
   resize: none;
 }
