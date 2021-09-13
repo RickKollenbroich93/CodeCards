@@ -4,7 +4,7 @@ import FullScreenIcon from '../../assets/FullScreenIcon';
 import WindowStateButton from './WindowStateButton';
 
 export default {
-  title: 'Component/Button',
+  title: 'Component/WindowStateButton',
   component: WindowStateButton,
   parameters: {
     backgrounds: {
