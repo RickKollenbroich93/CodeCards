@@ -24,7 +24,7 @@ function Navigation({ activeLink, className }: NavigationProps): JSX.Element {
     <nav className={`${styles.navigation} ${className}`}>
       <Link to="/collections">
         <CollectionIcon
-          className={styles.bookmark}
+          className={styles.collection}
           {...(activeLink === 'collection' ? active : inactive)}
         />
       </Link>
@@ -36,7 +36,7 @@ function Navigation({ activeLink, className }: NavigationProps): JSX.Element {
       </Link>
       <Link to="/add">
         <AddIcon
-          className={styles.search}
+          className={styles.add}
           {...(activeLink === 'add' ? active : inactive)}
         />
       </Link>

@@ -1,0 +1,41 @@
+import React from 'react';
+import CodeCard from './CodeCard';
+
+export default {
+  title: 'Component/CodeCard',
+  component: CodeCard,
+  parameters: {
+    backgrounds: {
+      default: 'dark',
+    },
+  },
+};
+
+export const CardJs = (): JSX.Element => {
+  return <CodeCard language="js" content="const a = 23;" title="JS-Card" />;
+};
+export const CardJsFullScreen = (): JSX.Element => {
+  return (
+    <CodeCard
+      language="js"
+      content="const a = 23;"
+      title="JS-Card"
+      layout="detail"
+      description="Bla bla bla "
+    />
+  );
+};
+export const CardCSS = (): JSX.Element => {
+  return (
+    <CodeCard
+      language="css"
+      content=".background{background:white;}"
+      title="CSS-Card"
+    />
+  );
+};
+export const CardHTML = (): JSX.Element => {
+  return (
+    <CodeCard language="html" content="<h1>Hallo</h1>" title="HTML-Card" />
+  );
+};

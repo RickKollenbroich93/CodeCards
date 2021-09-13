@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 import React from 'react';
-import classes from './MinButton.module.css';
+import classes from './WindowStateButton.module.css';
 
 type ButtonProps = {
   children: ReactNode;

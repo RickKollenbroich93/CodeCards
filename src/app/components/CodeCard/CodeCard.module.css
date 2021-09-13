@@ -1,0 +1,20 @@
+.codeContainer {
+  gap: 5px;
+  display: grid;
+}
+.cardWrapper {
+  display: grid;
+  background-color: #2d2d2d;
+  border-radius: 20px;
+}
+.codeOutput {
+  width: 100%;
+  height: 20rem;
+  margin: 0;
+  border-radius: 20px;
+}
+.buttonWrapper {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 1rem 1rem 1rem;
+}
