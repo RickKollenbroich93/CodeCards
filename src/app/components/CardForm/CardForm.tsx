@@ -5,6 +5,7 @@ import styles from './CardForm.module.css';
 import TagGroup from '../TagGroup/TagGroup';
 import CodecardEdit from '../CodeCardEdit/CodecardEdit';
 import { useState } from 'react';
+import { LANGUAGES } from '../lib/languageMap';
 
 type SearchBarProps = {
   handleSubmit: (event: React.FormEvent) => void;
@@ -20,32 +21,36 @@ function SearchBar({
   className,
   children,
 }: SearchBarProps): JSX.Element {
-  const [language, setLanguage] = useState<string | null>('HTML');
+  const [selectedLanguage, setSelectedLanguage] = useState<string>('html');
 
-  const LanguageList = [
-    { children: 'HTML' },
-    { children: 'CSS' },
-    { children: 'React' },
-  ];
+  const languageList = Object.values(LANGUAGES);
+  const tagLanguageList = languageList.map((language) => {
+    return {
+      children: language,
+      onClick: () => setSelectedLanguage(language),
+      active: selectedLanguage === language,
+    };
+  });
+
   return (
     <form
       className={`${styles.container} ${className}`}
       onSubmit={handleSubmit}
     >
-      <TagGroup tagList={LanguageList} />
+      <TagGroup tagList={tagLanguageList} />
 
       <input
         type="text"
         placeholder="Card Title"
-        className={styles.searchBar__input}
+        className={styles.titleInput}
         onChange={onChange}
       />
-      <CodecardEdit language="css" />
-      <input
-        type="text"
+      <div className={styles.codeContainer}>
+        <CodecardEdit language={selectedLanguage} />
+      </div>
+      <textarea
         placeholder="// Write your description here"
-        className={styles.searchBar__input}
-        onChange={onChange}
+        className={styles.DescriptionInput}
       />
       <AddButton>{children}</AddButton>
     </form>
