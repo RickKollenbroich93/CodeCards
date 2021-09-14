@@ -6,6 +6,7 @@
   background: var(--bg-tag);
   color: var(--text-primary);
   white-space: nowrap;
+  max-height: 2.5rem;
 }
 
 .active {
