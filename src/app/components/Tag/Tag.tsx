@@ -17,6 +17,7 @@ export default function Tag({
 }: TagProps): JSX.Element {
   return (
     <button
+      type="button"
       onClick={onClick}
       className={`${styles.tag} ${className} ${active && styles.active}`}
     >
