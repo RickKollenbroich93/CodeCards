@@ -1,10 +1,10 @@
 import React from 'react';
 import AddIcon from '../../assets/AddIcon';
-import InputButton from './AddButton';
+import AddButton from './AddButton';
 
 export default {
   title: 'Component/Button',
-  component: InputButton,
+  component: AddButton,
   parameters: {
     backgrounds: {
       default: 'dark',
@@ -13,14 +13,14 @@ export default {
 };
 
 export const AddCollection = (): JSX.Element => (
-  <InputButton>
+  <AddButton>
     <AddIcon />
     New Collection
-  </InputButton>
+  </AddButton>
 );
 export const AddCardButton = (): JSX.Element => (
-  <InputButton>
+  <AddButton>
     <AddIcon />
     ADD new Card
-  </InputButton>
+  </AddButton>
 );
