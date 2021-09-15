@@ -1,0 +1,39 @@
+.textBox,
+.codeBox {
+  padding: 1em;
+  margin: 0.5em 0;
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  font-size: 1rem;
+  text-align: left;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.5;
+  tab-size: 4;
+  border: none;
+  outline: none;
+  border-radius: 20px;
+  overflow: auto;
+  white-space: nowrap;
+  width: 100%;
+}
+.codeBox {
+  height: 30rem;
+}
+.textBox {
+  height: 30rem;
+  resize: none;
+  color: var(--text-primary);
+  background-color: var(--bg-card);
+  order: -1;
+}
+.scrollContainer {
+  display: flex;
+  gap: 20px;
+}
+@media only screen and (max-width: 600px) {
+  .scrollContainer {
+    display: grid;
+    gap: 20px;
+  }
+}
