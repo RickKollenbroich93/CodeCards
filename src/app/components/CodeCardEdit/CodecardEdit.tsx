@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import Prism from 'prismjs';
 import styles from './CodeCardEdit.module.css';
 import '../../prism.css';
+import { ScrollSync, ScrollSyncPane } from 'react-scroll-sync';
 
 export type CardProps = {
   layout?: 'detail' | 'compact';
@@ -13,23 +14,13 @@ export default function CodeCard({
   layout = 'compact',
   language,
 }: CardProps): JSX.Element {
-  const [content, setContent] = useState('//Write your code here');
-  const charlimit = 35; // char limit per line
+  const [content, setContent] = useState(
+    '//Write your code here \n\n\n\n\n\n\n\n\n\n\n \t '
+  );
 
   function handleChange(event: ChangeEvent<HTMLTextAreaElement>) {
     const { value } = event.target;
-    const lines = value.split('\n');
-    for (let i = 0; i < lines.length; i++) {
-      if (lines[i].length <= charlimit) continue;
-      let j = 0;
-      let space = charlimit;
-      while (j++ <= charlimit) {
-        if (lines[i].charAt(j) === ' ') space = j;
-      }
-      lines[i + 1] = lines[i].substring(space + 1) + (lines[i + 1] || '');
-      lines[i] = lines[i].substring(0, space);
-    }
-    setContent(lines.slice(0, 10).join('\n'));
+    setContent(value);
   }
 
   useEffect(() => {
@@ -43,17 +34,23 @@ export default function CodeCard({
   return (
     <div className={styles.codeContainer}>
       {layout === 'compact' && (
-        <>
-          <pre className={styles.codeOutput}>
-            <code className={`language-${language}`}>{content}</code>
-          </pre>
-          <textarea
-            className={styles.textBox}
-            value={content}
-            placeholder={content}
-            onChange={handleChange}
-          />
-        </>
+        <ScrollSync>
+          <div className={styles.scrollContainer}>
+            <ScrollSyncPane>
+              <pre className={styles.codeBox}>
+                <code className={`language-${language}`}>{content}</code>
+              </pre>
+            </ScrollSyncPane>
+            <ScrollSyncPane>
+              <textarea
+                spellCheck="false"
+                className={styles.textBox}
+                value={content}
+                onChange={handleChange}
+              />
+            </ScrollSyncPane>
+          </div>
+        </ScrollSync>
       )}
     </div>
   );
