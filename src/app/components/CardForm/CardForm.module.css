@@ -27,3 +27,6 @@
 .codeContainer {
   position: relative;
 }
+.taggroup {
+  justify-self: center;
+}

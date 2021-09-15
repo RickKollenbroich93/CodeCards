@@ -25,3 +25,6 @@
   overflow: auto;
   white-space: nowrap;
 }
+.scrollContainer {
+  display: flex;
+}

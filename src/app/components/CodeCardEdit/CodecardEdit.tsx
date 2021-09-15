@@ -14,7 +14,9 @@ export default function CodeCard({
   layout = 'compact',
   language,
 }: CardProps): JSX.Element {
-  const [content, setContent] = useState('//Write your code here');
+  const [content, setContent] = useState(
+    '//Write your code here \n\n\n\n\n\n\n\n\n\n\n \t '
+  );
 
   function handleChange(event: ChangeEvent<HTMLTextAreaElement>) {
     const { value } = event.target;
@@ -33,7 +35,7 @@ export default function CodeCard({
     <div className={styles.codeContainer}>
       {layout === 'compact' && (
         <ScrollSync>
-          <div>
+          <div className={styles.scrollContainer}>
             <ScrollSyncPane>
               <pre className={styles.codeBox}>
                 <code className={`language-${language}`}>{content}</code>
@@ -43,7 +45,7 @@ export default function CodeCard({
               <textarea
                 spellCheck="false"
                 className={styles.textBox}
-                placeholder={content}
+                value={content}
                 onChange={handleChange}
               />
             </ScrollSyncPane>

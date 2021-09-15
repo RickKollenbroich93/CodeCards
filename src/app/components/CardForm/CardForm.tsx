@@ -37,7 +37,7 @@ function SearchBar({
       className={`${styles.container} ${className}`}
       onSubmit={handleSubmit}
     >
-      <TagGroup tagList={tagLanguageList} />
+      <TagGroup tagList={tagLanguageList} className={styles.taggroup} />
 
       <input
         type="text"
