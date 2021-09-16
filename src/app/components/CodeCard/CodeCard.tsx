@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import Prism from 'prismjs';
 import styles from './CodeCard.module.css';
 import '../../prism.css';
-import WindowStateButton from '../Buttons/CardButtons/CardButtons';
+import CardButtons from '../Buttons/CardButtons/CardButtons';
 import DeleteIcon from '../assets/DeleteIcon';
 import EditIcon from '../assets/EditIcon';
 import SubHeader from '../Header/SubHeader/SubHeader';
@@ -38,12 +38,12 @@ export default function CodeCard({
           <code className={`language-${language}`}>{content}</code>
         </pre>
         <div className={styles.buttonWrapper}>
-          <WindowStateButton onClick={onClick}>
+          <CardButtons onClick={onClick}>
             <DeleteIcon />
-          </WindowStateButton>
-          <WindowStateButton onClick={onClick}>
+          </CardButtons>
+          <CardButtons onClick={onClick}>
             <EditIcon />
-          </WindowStateButton>
+          </CardButtons>
         </div>
       </div>
       <CollectionTagGroup />
