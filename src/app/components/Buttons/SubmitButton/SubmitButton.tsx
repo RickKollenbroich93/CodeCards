@@ -6,10 +6,10 @@ type ButtonProps = {
   children: ReactNode;
   className?: string;
 };
-function InputButton({ children, className }: ButtonProps): JSX.Element {
+function SubmitButton({ children, className }: ButtonProps): JSX.Element {
   return (
     <button className={`${classes.button} ${className}`}>{children}</button>
   );
 }
 
-export default InputButton;
+export default SubmitButton;

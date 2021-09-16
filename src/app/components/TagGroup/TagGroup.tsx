@@ -18,7 +18,7 @@ export type TagGroupProps = {
 const TagGroup = ({ tagList, className }: TagGroupProps): JSX.Element => {
   return (
     <section className={`${styles.container} ${className}`}>
-      {tagList !== undefined &&
+      {tagList &&
         tagList.map((tag, index) => (
           <Tag key={index} active={tag.active} onClick={tag.onClick}>
             {tag.children}

@@ -51,7 +51,6 @@ function CollectionTags(): JSX.Element {
       </div>
 
       <section className={styles.modal} id="modal">
-        TEXT
         <div className={styles.modalContent}>
           <Header className={styles.headerModal}>Select Collections</Header>
           {allCollections && (

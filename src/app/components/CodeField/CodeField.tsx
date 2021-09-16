@@ -10,7 +10,7 @@ export type CodeFieldProps = {
   language: string;
 };
 
-export default function CodeCard({
+export default function CodeField({
   layout = 'compact',
   language,
 }: CodeFieldProps): JSX.Element {

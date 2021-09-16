@@ -6,10 +6,10 @@ type ButtonProps = {
   children: ReactNode;
   className?: string;
 };
-function MinButton({ children, className }: ButtonProps): JSX.Element {
+function WindowStateButton({ children, className }: ButtonProps): JSX.Element {
   return (
     <button className={`${classes.button} ${className}`}>{children}</button>
   );
 }
 
-export default MinButton;
+export default WindowStateButton;
