@@ -35,12 +35,6 @@ function CollectionTags(): JSX.Element {
   modalToggle === true && modal?.classList.remove(`${styles.modalHidden}`);
   //Modal function END
 
-  //Mock SHIT
-  // const testList = [
-  //   { children: 'Hallo' },
-  //   { children: 'I hate this component' },
-  // ];
-
   return (
     <>
       <div className={styles.collectionContainer}>
