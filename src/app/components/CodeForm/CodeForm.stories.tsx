@@ -5,6 +5,7 @@ export default {
   title: 'Component/CodeForm',
   component: CodeForm,
   parameters: {
+    layout: 'fullscreen',
     backgrounds: {
       default: 'dark',
     },
