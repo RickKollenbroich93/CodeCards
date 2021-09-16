@@ -2,27 +2,25 @@ import React, { useEffect } from 'react';
 import Prism from 'prismjs';
 import styles from './CodeCard.module.css';
 import '../../prism.css';
-import WindowStateButton from '../Buttons/WindowStateButton/WindowStateButton';
-import FullScreenIcon from '../assets/FullScreenIcon';
+import WindowStateButton from '../Buttons/CardButtons/CardButtons';
 import DeleteIcon from '../assets/DeleteIcon';
 import EditIcon from '../assets/EditIcon';
-import TagGroup from '../TagGroup/TagGroup';
 import SubHeader from '../Header/SubHeader/SubHeader';
-import MinScreenIcon from '../assets/MinScreenIcon';
+import CollectionTagGroup from '../CollectionTagGroup/CollectionTagGroup';
 
 export type CardProps = {
-  layout?: 'compact' | 'detail';
   language: string;
   content: string;
   title: string;
   description?: string;
+  onClick?: () => void;
 };
 
 export default function CodeCard({
   language,
   content,
   title,
-  layout = 'compact',
+  onClick,
 }: CardProps): JSX.Element {
   useEffect(() => {
     Prism.highlightAll();
@@ -32,45 +30,23 @@ export default function CodeCard({
     Prism.highlightAll();
   }, [language, content]);
 
-  const MockList = [
-    { children: 'React' },
-    { children: 'HTML' },
-    { children: 'CSS' },
-  ];
-
   return (
     <div className={styles.codeContainer}>
       <SubHeader>{title}</SubHeader>
       <div className={styles.cardWrapper}>
-        <>
-          <pre className={styles.codeOutput}>
-            <code className={`language-${language}`}>{content}</code>
-          </pre>
-        </>
-        {layout === 'compact' && (
-          <WindowStateButton>
-            <FullScreenIcon />
+        <pre className={styles.codeOutput}>
+          <code className={`language-${language}`}>{content}</code>
+        </pre>
+        <div className={styles.buttonWrapper}>
+          <WindowStateButton onClick={onClick}>
+            <DeleteIcon />
           </WindowStateButton>
-        )}
-        {layout === 'detail' && (
-          <div className={styles.buttonWrapper}>
-            <WindowStateButton>
-              <DeleteIcon />
-            </WindowStateButton>
-            <WindowStateButton>
-              <EditIcon />
-            </WindowStateButton>
-          </div>
-        )}
+          <WindowStateButton onClick={onClick}>
+            <EditIcon />
+          </WindowStateButton>
+        </div>
       </div>
-      <TagGroup tagList={MockList} />
-      {layout === 'detail' && (
-        <>
-          <WindowStateButton>
-            <MinScreenIcon />
-          </WindowStateButton>
-        </>
-      )}
+      <CollectionTagGroup />
     </div>
   );
 }
