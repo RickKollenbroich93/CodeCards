@@ -8,7 +8,6 @@ import DeleteIcon from '../assets/DeleteIcon';
 import EditIcon from '../assets/EditIcon';
 import TagGroup from '../TagGroup/TagGroup';
 import SubHeader from '../Header/SubHeader/SubHeader';
-import DescriptionBox from '../DescriptionBox/DescriptionBox';
 import MinScreenIcon from '../assets/MinScreenIcon';
 
 export type CardProps = {
@@ -24,7 +23,6 @@ export default function CodeCard({
   content,
   title,
   layout = 'compact',
-  description,
 }: CardProps): JSX.Element {
   useEffect(() => {
     Prism.highlightAll();
@@ -68,7 +66,6 @@ export default function CodeCard({
       <TagGroup tagList={MockList} />
       {layout === 'detail' && (
         <>
-          <DescriptionBox>{description}</DescriptionBox>{' '}
           <WindowStateButton>
             <MinScreenIcon />
           </WindowStateButton>
