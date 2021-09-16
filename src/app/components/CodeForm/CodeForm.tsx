@@ -6,7 +6,7 @@ import TagGroup from '../TagGroup/TagGroup';
 import CodeField from '../CodeField/CodeField';
 import { useState } from 'react';
 import { LANGUAGES } from '../lib/languageMap';
-import Tag from '../Tag/Tag';
+import CollectionTagGroup from '../CollectionTagGroup/CollectionTagGroup';
 
 type CodeFormProps = {
   handleSubmit: (event: React.FormEvent) => void;
@@ -33,11 +33,6 @@ function SearchBar({
     };
   });
 
-  const selectedCollections = [null];
-  const selectedCollectionList = selectedCollections.map((collection) => {
-    return { children: collection };
-  });
-
   return (
     <form
       className={`${styles.container} ${className}`}
@@ -52,12 +47,7 @@ function SearchBar({
         onChange={onChange}
       />
       <CodeField language={selectedLanguage}></CodeField>
-      <div className={styles.collectionContainer}>
-        {selectedCollections !== undefined && (
-          <TagGroup tagList={selectedCollectionList} />
-        )}
-        <Tag active>Select Collection</Tag>
-      </div>
+      <CollectionTagGroup />
       <AddButton>{children}</AddButton>
     </form>
   );
