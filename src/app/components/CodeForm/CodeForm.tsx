@@ -6,8 +6,9 @@ import TagGroup from '../TagGroup/TagGroup';
 import CodeField from '../CodeField/CodeField';
 import { useState } from 'react';
 import { LANGUAGES } from '../lib/languageMap';
+import Tag from '../Tag/Tag';
 
-type SearchBarProps = {
+type CodeFormProps = {
   handleSubmit: (event: React.FormEvent) => void;
   className?: string;
 
@@ -20,7 +21,7 @@ function SearchBar({
   onChange,
   className,
   children,
-}: SearchBarProps): JSX.Element {
+}: CodeFormProps): JSX.Element {
   const [selectedLanguage, setSelectedLanguage] = useState<string>('html');
 
   const languageList = Object.values(LANGUAGES);
@@ -30,6 +31,11 @@ function SearchBar({
       onClick: () => setSelectedLanguage(language),
       active: selectedLanguage === language,
     };
+  });
+
+  const selectedCollections = [null];
+  const selectedCollectionList = selectedCollections.map((collection) => {
+    return { children: collection };
   });
 
   return (
@@ -46,6 +52,12 @@ function SearchBar({
         onChange={onChange}
       />
       <CodeField language={selectedLanguage}></CodeField>
+      <div className={styles.collectionContainer}>
+        {selectedCollections !== undefined && (
+          <TagGroup tagList={selectedCollectionList} />
+        )}
+        <Tag active>Select Collection</Tag>
+      </div>
       <AddButton>{children}</AddButton>
     </form>
   );

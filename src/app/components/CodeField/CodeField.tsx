@@ -5,7 +5,7 @@ import styles from './CodeField.module.css';
 import '../../prism.css';
 import { ScrollSync, ScrollSyncPane } from 'react-scroll-sync';
 
-export type CardProps = {
+export type CodeFieldProps = {
   layout?: 'detail' | 'compact';
   language: string;
 };
@@ -13,7 +13,7 @@ export type CardProps = {
 export default function CodeCard({
   layout = 'compact',
   language,
-}: CardProps): JSX.Element {
+}: CodeFieldProps): JSX.Element {
   const [content, setContent] = useState('//Your Highlighted Code');
 
   function handleChange(event: ChangeEvent<HTMLTextAreaElement>) {

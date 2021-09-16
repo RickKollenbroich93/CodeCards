@@ -27,3 +27,8 @@
 .taggroup {
   justify-self: center;
 }
+.collectionContainer {
+  display: flex;
+  gap: 0.5rem;
+  justify-self: center;
+}

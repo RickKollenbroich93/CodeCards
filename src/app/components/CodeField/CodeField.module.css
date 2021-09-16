@@ -16,12 +16,10 @@
   overflow: auto;
   white-space: nowrap;
   width: 100%;
+  height: 40rem;
 }
-.codeBox {
-  height: 30rem;
-}
+
 .textBox {
-  height: 30rem;
   resize: none;
   color: var(--text-primary);
   background-color: var(--bg-card);
