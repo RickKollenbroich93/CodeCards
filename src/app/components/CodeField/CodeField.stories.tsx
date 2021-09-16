@@ -1,9 +1,9 @@
 import React from 'react';
-import CodeCardEdit from './CodecardEdit';
+import CodeField from './CodeField';
 
 export default {
-  title: 'Component/CodeCardEdit',
-  component: CodeCardEdit,
+  title: 'Component/CodeField',
+  component: CodeField,
   parameters: {
     backgrounds: {
       default: 'dark',
@@ -11,11 +11,11 @@ export default {
   },
 };
 export const CardHtml = (): JSX.Element => {
-  return <CodeCardEdit language="html" />;
+  return <CodeField language="html" />;
 };
 export const CardCss = (): JSX.Element => {
-  return <CodeCardEdit language="css" />;
+  return <CodeField language="css" />;
 };
 export const CardJs = (): JSX.Element => {
-  return <CodeCardEdit language="js" />;
+  return <CodeField language="js" />;
 };

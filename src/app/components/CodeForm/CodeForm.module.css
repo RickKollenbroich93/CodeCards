@@ -1,7 +1,8 @@
 .container {
   display: grid;
-  grid-template-rows: 1fr 1fr 7fr 3.4fr;
   gap: 0.5rem;
+  height: 100%;
+  grid-template-rows: auto auto 1fr;
 }
 .titleInput {
   background-color: var(--bg-card);
@@ -10,8 +11,9 @@
   font-size: 2rem;
   text-align: center;
   color: var(--text-secondary);
-  width: 100%;
+  width: 70%;
   border-radius: 10px;
+  justify-self: center;
 }
 .titleInput:focus {
   outline: none;
@@ -24,9 +26,11 @@
   font-size: 1rem;
   height: 10rem;
 }
-.codeContainer {
-  position: relative;
-}
 .taggroup {
+  justify-self: center;
+}
+.collectionContainer {
+  display: flex;
+  gap: 0.5rem;
   justify-self: center;
 }

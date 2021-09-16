@@ -7,8 +7,8 @@ type HeaderProps = {
   className?: string;
 };
 
-function Header({ children }: HeaderProps): JSX.Element {
+function SubHeader({ children }: HeaderProps): JSX.Element {
   return <h2 className={styles.header}>{children}</h2>;
 }
 
-export default Header;
+export default SubHeader;

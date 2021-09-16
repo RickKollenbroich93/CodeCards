@@ -1,10 +1,11 @@
 import React from 'react';
-import CardForm from './CardForm';
+import CodeForm from './CodeForm';
 
 export default {
-  title: 'Component/CardForm',
-  component: CardForm,
+  title: 'Component/CodeForm',
+  component: CodeForm,
   parameters: {
+    layout: 'fullscreen',
     backgrounds: {
       default: 'dark',
     },
@@ -12,14 +13,14 @@ export default {
 };
 
 export const AddCard = (): JSX.Element => (
-  <CardForm
+  <CodeForm
     handleSubmit={() => console.log('Submitted')}
     children="Add new Card"
     onChange={(event) => console.log(event.target.value)}
   />
 );
 export const EditCard = (): JSX.Element => (
-  <CardForm
+  <CodeForm
     handleSubmit={() => console.log('Submitted')}
     children="Edit Card"
     onChange={(event) => console.log(event.target.value)}

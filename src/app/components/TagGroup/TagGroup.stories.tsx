@@ -38,6 +38,8 @@ const tags = [
 
 const Template: Story<TagGroupProps> = (args) => <TagGroup {...args} />;
 
+export const NoTags = (): JSX.Element => <TagGroup></TagGroup>;
+
 export const Primary = Template.bind({});
 Primary.args = {
   tagList: tags,

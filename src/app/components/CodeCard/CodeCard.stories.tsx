@@ -21,7 +21,6 @@ export const CardJsFullScreen = (): JSX.Element => {
       content="const a = 23;"
       title="JS-Card"
       layout="detail"
-      description="Bla bla bla "
     />
   );
 };

@@ -1,22 +1,20 @@
 import type { ChangeEvent } from 'react';
 import React, { useEffect, useState } from 'react';
 import Prism from 'prismjs';
-import styles from './CodeCardEdit.module.css';
+import styles from './CodeField.module.css';
 import '../../prism.css';
 import { ScrollSync, ScrollSyncPane } from 'react-scroll-sync';
 
-export type CardProps = {
+export type CodeFieldProps = {
   layout?: 'detail' | 'compact';
   language: string;
 };
 
-export default function CodeCard({
+export default function CodeField({
   layout = 'compact',
   language,
-}: CardProps): JSX.Element {
-  const [content, setContent] = useState(
-    '//Write your code here \n\n\n\n\n\n\n\n\n\n\n \t '
-  );
+}: CodeFieldProps): JSX.Element {
+  const [content, setContent] = useState('//Your Highlighted Code');
 
   function handleChange(event: ChangeEvent<HTMLTextAreaElement>) {
     const { value } = event.target;
@@ -45,7 +43,7 @@ export default function CodeCard({
               <textarea
                 spellCheck="false"
                 className={styles.textBox}
-                value={content}
+                placeholder="Write your Code here"
                 onChange={handleChange}
               />
             </ScrollSyncPane>
