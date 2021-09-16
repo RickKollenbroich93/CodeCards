@@ -3,3 +3,35 @@
   gap: 0.5rem;
   justify-self: center;
 }
+.modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  z-index: 1000;
+  background-color: rgba(32, 32, 32, 0.65);
+}
+.modalHidden {
+  display: none;
+}
+.modalContent {
+  display: grid;
+  justify-content: center;
+  gap: 3rem;
+  padding-top: 2rem;
+}
+.noCollections {
+  font-size: 2rem;
+  font-family: var(--text-primary);
+  color: rgba(255, 255, 255, 0.7);
+}
+.tagList {
+  display: grid;
+  gap: 10px;
+}
+.headerModal {
+  justify-self: center;
+}
