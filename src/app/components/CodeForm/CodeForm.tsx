@@ -16,7 +16,7 @@ type CodeFormProps = {
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
-function SearchBar({
+function CodeForm({
   handleSubmit,
   onChange,
   className,
@@ -53,4 +53,4 @@ function SearchBar({
   );
 }
 
-export default SearchBar;
+export default CodeForm;
