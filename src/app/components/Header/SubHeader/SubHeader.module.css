@@ -2,6 +2,8 @@
   color: var(--color-primary);
   font-family: var(--header-font);
   justify-self: center;
+  text-align: center;
+  padding-bottom: 1.5rem;
 }
 
 h2 {
