@@ -15,9 +15,6 @@
   z-index: 1000;
   background-color: rgba(32, 32, 32, 0.65);
 }
-.modalHidden {
-  display: none;
-}
 .modalContent {
   display: grid;
   justify-content: center;
