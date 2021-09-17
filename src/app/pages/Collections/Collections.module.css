@@ -1,0 +1,33 @@
+.container {
+  display: grid;
+  height: 100vh;
+  background-color: var(--bg-primary);
+  overflow: hidden;
+  gap: 15px;
+  grid-template-rows: auto 1fr;
+}
+.headerSection {
+  display: grid;
+  gap: 10px;
+  padding: 1rem 1rem 2rem 1rem;
+}
+.headerSpacer {
+  font-size: 1rem;
+}
+.headerPos {
+  justify-self: center;
+}
+.tagGroupPos {
+  justify-self: center;
+}
+.collectionListWrapper {
+  justify-self: center;
+}
+.noCollections {
+  font-size: 1rem;
+  font-family: var(--font-face);
+  color: var(--text-primary);
+}
+.tagList {
+  display: grid;
+}
