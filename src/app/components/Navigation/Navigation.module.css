@@ -1,5 +1,5 @@
 .navigation {
-  background-color: var(--bg-dark);
+  background-color: var(--bg-secondary);
   width: 100%;
   color: var(--text-primary);
   display: flex;

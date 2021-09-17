@@ -1,0 +1,31 @@
+.container {
+  display: grid;
+  height: 100vh;
+  background-color: var(--bg-primary);
+  overflow: hidden;
+  gap: 15px;
+  grid-template-rows: auto 1fr;
+}
+.headerSection {
+  display: grid;
+  gap: 10px;
+  padding: 1rem 1rem 2rem 1rem;
+}
+.headerPos {
+  justify-self: center;
+}
+.tagGroupPos {
+  justify-self: center;
+}
+.cardContainer {
+  display: grid;
+  gap: 2rem;
+  padding: 1rem;
+  overflow: scroll;
+}
+.warning {
+  font-size: 2rem;
+  font-family: var(--font-face);
+  color: var(--text-primary);
+  text-align: center;
+}

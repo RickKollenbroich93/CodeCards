@@ -2,7 +2,8 @@
   background-color: var(--bg-secondary);
   border-style: none;
   font-family: var(--font-face);
-  font-size: 2rem;
+  font-size: 1.5rem;
+  padding-left: 5rem;
   text-align: center;
   color: var(--text-secondary);
   width: 100%;
@@ -18,4 +19,7 @@
   background-color: var(--bg-secondary);
   border: solid 1px var(--bg-tag);
   border-radius: 20px;
+  width: 100%;
+  max-width: 600px;
+  justify-self: center;
 }
