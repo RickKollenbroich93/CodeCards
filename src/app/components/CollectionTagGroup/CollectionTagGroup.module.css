@@ -15,14 +15,16 @@
   z-index: 1000;
   background-color: rgba(32, 32, 32, 0.65);
 }
-.modalHidden {
-  display: none;
-}
 .modalContent {
   display: grid;
   justify-content: center;
   gap: 3rem;
   padding-top: 2rem;
+}
+@media only screen and (max-width: 600px) {
+  .modal {
+    height: calc(100% + 20rem);
+  }
 }
 .noCollections {
   font-size: 2rem;

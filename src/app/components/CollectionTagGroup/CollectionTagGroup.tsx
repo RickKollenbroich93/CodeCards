@@ -30,9 +30,7 @@ function CollectionTags(): JSX.Element {
   function handleModal() {
     setModalToggle(!modalToggle);
   }
-  const modal = document.querySelector('#modal');
-  modalToggle === false && modal?.classList.add(`${styles.modalHidden}`);
-  modalToggle === true && modal?.classList.remove(`${styles.modalHidden}`);
+
   //Modal function END
 
   return (
@@ -43,23 +41,27 @@ function CollectionTags(): JSX.Element {
           Select Collection
         </Tag>
       </div>
-
-      <section className={styles.modal} id="modal">
-        <div className={styles.modalContent}>
-          <Header className={styles.headerModal}>Select Collections</Header>
-          {allCollections && (
-            <TagGroup className={styles.tagList} tagList={allCollectionList} />
-          )}
-          {allCollectionList && (
-            <p className={styles.noCollections}>You have no Collections</p>
-          )}
-          <AddButton
-            type="button"
-            children="Done"
-            onClick={() => handleModal()}
-          />
-        </div>
-      </section>
+      {modalToggle && (
+        <section className={styles.modal} id="modal">
+          <div className={styles.modalContent}>
+            <Header className={styles.headerModal}>Select Collections</Header>
+            {allCollections && (
+              <TagGroup
+                className={styles.tagList}
+                tagList={allCollectionList}
+              />
+            )}
+            {allCollectionList && (
+              <p className={styles.noCollections}>You have no Collections</p>
+            )}
+            <AddButton
+              type="button"
+              children="Done"
+              onClick={() => handleModal()}
+            />
+          </div>
+        </section>
+      )}
     </>
   );
 }

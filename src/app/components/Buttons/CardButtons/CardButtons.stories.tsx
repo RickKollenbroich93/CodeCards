@@ -1,11 +1,11 @@
 import React from 'react';
 import MinScreenIcon from '../../assets/MinScreenIcon';
 import FullScreenIcon from '../../assets/FullScreenIcon';
-import WindowStateButton from './WindowStateButton';
+import CardButtons from './CardButtons';
 
 export default {
-  title: 'Component/WindowStateButton',
-  component: WindowStateButton,
+  title: 'Component/CardButtons',
+  component: CardButtons,
   parameters: {
     backgrounds: {
       default: 'dark',
@@ -14,12 +14,12 @@ export default {
 };
 
 export const MinWindow = (): JSX.Element => (
-  <WindowStateButton>
+  <CardButtons>
     <MinScreenIcon />
-  </WindowStateButton>
+  </CardButtons>
 );
 export const FullWindow = (): JSX.Element => (
-  <WindowStateButton>
+  <CardButtons>
     <FullScreenIcon />
-  </WindowStateButton>
+  </CardButtons>
 );
