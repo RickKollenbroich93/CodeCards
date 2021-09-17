@@ -19,4 +19,7 @@
   background-color: var(--bg-secondary);
   border: solid 1px var(--bg-tag);
   border-radius: 20px;
+  width: 100%;
+  max-width: 600px;
+  justify-self: center;
 }
