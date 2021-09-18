@@ -7,6 +7,7 @@ type TagProps = {
   onClick?: () => void;
   children: ReactNode;
   className?: string;
+  language?: string;
 };
 
 export default function Tag({
@@ -14,9 +15,11 @@ export default function Tag({
   onClick,
   children,
   className,
+  language,
 }: TagProps): JSX.Element {
   return (
     <button
+      id={language}
       type="button"
       onClick={onClick}
       className={`${styles.tag} ${className} ${active && styles.active}`}

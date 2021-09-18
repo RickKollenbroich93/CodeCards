@@ -8,6 +8,7 @@ type TagProps = {
   onClick?: () => void;
   children?: ReactNode;
   className?: string;
+  language?: string;
 };
 
 export type TagGroupProps = {
