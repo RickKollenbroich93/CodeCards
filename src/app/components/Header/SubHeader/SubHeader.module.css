@@ -2,9 +2,10 @@
   color: var(--color-primary);
   font-family: var(--header-font);
   justify-self: center;
+  text-align: center;
 }
 
 h2 {
   margin: 0;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
 }
