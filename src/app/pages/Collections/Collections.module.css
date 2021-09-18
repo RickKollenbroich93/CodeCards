@@ -4,7 +4,7 @@
   background-color: var(--bg-primary);
   overflow: hidden;
   gap: 15px;
-  grid-template-rows: auto 1fr;
+  grid-template-rows: auto auto 1fr;
 }
 .headerSection {
   display: grid;
@@ -22,12 +22,31 @@
 }
 .collectionListWrapper {
   justify-self: center;
+  overflow: scroll;
 }
 .noCollections {
   font-size: 1rem;
   font-family: var(--font-face);
   color: var(--text-primary);
+  text-align: center;
+  padding-bottom: 100%;
 }
 .tagList {
   display: grid;
+}
+.modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  z-index: 1000;
+  background-color: rgba(32, 32, 32, 0.65);
+}
+.modalContent {
+  display: grid;
+  gap: 10px;
+  padding-top: 30%;
 }
