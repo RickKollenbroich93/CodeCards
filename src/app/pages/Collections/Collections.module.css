@@ -12,7 +12,7 @@
   padding: 1rem 1rem 2rem 1rem;
 }
 .headerSpacer {
-  font-size: 1rem;
+  font-size: 1.5rem;
 }
 .headerPos {
   justify-self: center;
@@ -25,7 +25,7 @@
   overflow: scroll;
 }
 .noCollections {
-  font-size: 1rem;
+  font-size: 1.25rem;
   font-family: var(--font-face);
   color: var(--text-primary);
   text-align: center;

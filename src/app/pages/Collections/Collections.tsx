@@ -50,7 +50,7 @@ export default function Collections(): JSX.Element {
     { children: 'JS-Collection', language: 'js' },
     { children: 'CSS-Collection', language: 'css' },
     { children: 'CSS-Collection', language: 'css' },
-    { children: 'HTML-Collection', language: 'html' },
+    { children: 'CSS-Collection', language: 'css' },
   ];
   //All MockCollections END
 
@@ -99,7 +99,12 @@ export default function Collections(): JSX.Element {
           <TagGroup className={styles.tagList} tagList={searchedCollection} />
         )}
         {filteredCollections.length === 0 && (
-          <p className={styles.noCollections}>You don`t have any Collections</p>
+          <div className={styles.noCollections}>
+            <p>Sorry!!!</p>
+            <p>
+              You don`t have any {selectedLanguage.toUpperCase()} Collections
+            </p>
+          </div>
         )}
       </section>
       <AddButton
