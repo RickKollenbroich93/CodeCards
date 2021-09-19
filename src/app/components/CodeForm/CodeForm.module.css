@@ -28,6 +28,7 @@
 }
 .taggroup {
   justify-self: center;
+  height: 2.5rem;
 }
 .collectionContainer {
   display: flex;
