@@ -5,10 +5,20 @@ import classes from './SubmitButton.module.css';
 type ButtonProps = {
   children: ReactNode;
   className?: string;
+  onClick: () => void;
 };
-function SubmitButton({ children, className }: ButtonProps): JSX.Element {
+function SubmitButton({
+  children,
+  className,
+  onClick,
+}: ButtonProps): JSX.Element {
   return (
-    <button className={`${classes.button} ${className}`}>{children}</button>
+    <button
+      onClick={() => onClick()}
+      className={`${classes.button} ${className}`}
+    >
+      {children}
+    </button>
   );
 }
 
