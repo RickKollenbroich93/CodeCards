@@ -20,7 +20,7 @@ function SearchBar({
   className,
 }: SearchBarProps): JSX.Element {
   return (
-    <form
+    <section
       className={`${styles.container} ${className}`}
       onSubmit={handleSubmit}
     >
@@ -41,7 +41,7 @@ function SearchBar({
           </>
         )}
       </InputButton>
-    </form>
+    </section>
   );
 }
 
