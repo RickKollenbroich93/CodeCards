@@ -1,11 +1,11 @@
 import React from 'react';
 import styles from './SearchBar.module.css';
-import InputButton from '../Buttons/SubmitButton/SubmitButton';
+import SubmitButton from '../Buttons/SubmitButton/SubmitButton';
 import AddIcon from '../assets/AddIcon';
 import SearchIcon from '../assets/SearchIcon';
 
 type SearchBarProps = {
-  handleSubmit: (event: React.FormEvent) => void;
+  handleSubmit: () => void;
   type: 'search' | 'add';
   className?: string;
   searchValue: string;
@@ -20,10 +20,7 @@ function SearchBar({
   className,
 }: SearchBarProps): JSX.Element {
   return (
-    <section
-      className={`${styles.container} ${className}`}
-      onSubmit={handleSubmit}
-    >
+    <section className={`${styles.container} ${className}`}>
       <input
         type="search"
         placeholder={type === 'search' ? 'Search' : 'Enter new Collection'}
@@ -31,7 +28,7 @@ function SearchBar({
         value={searchValue}
         onChange={onChange}
       />
-      <InputButton>
+      <SubmitButton onClick={handleSubmit}>
         {type === 'search' ? (
           <SearchIcon />
         ) : (
@@ -40,7 +37,7 @@ function SearchBar({
             Add
           </>
         )}
-      </InputButton>
+      </SubmitButton>
     </section>
   );
 }
