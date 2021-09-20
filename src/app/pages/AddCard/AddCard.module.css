@@ -1,0 +1,15 @@
+.container {
+  display: grid;
+  height: 100vh;
+  grid-template-rows: auto 1fr;
+  gap: 15px;
+  background-color: var(--bg-primary);
+  overflow: hidden;
+}
+.codeForm {
+  overflow: scroll;
+}
+.headerSection {
+  justify-self: center;
+  padding-top: 1rem;
+}
