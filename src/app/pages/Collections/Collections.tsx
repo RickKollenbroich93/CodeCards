@@ -44,7 +44,6 @@ export default function Collections(): JSX.Element {
       language: Allcollections.language,
     };
   });
-
   //All Collections END
 
   //Filter Collections by Language
