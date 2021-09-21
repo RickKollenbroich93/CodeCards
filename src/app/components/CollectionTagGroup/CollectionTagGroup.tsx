@@ -33,8 +33,10 @@ function CollectionTags({
 
   return (
     <>
+      {selectedCollections && (
+        <TagGroup className={styles.tagSize} tagList={selectedCollections} />
+      )}
       <div className={styles.collectionContainer}>
-        {selectedCollections && <TagGroup tagList={selectedCollections} />}
         <Tag active onClick={() => handleModal()}>
           Select Collection
         </Tag>

@@ -11,12 +11,15 @@ import CollectionTagGroup from '../../components/CollectionTagGroup/CollectionTa
 import AddButton from '../../components/Buttons/AddButton/AddButton';
 import useCollections from '../../hooks/useCollections';
 import useCodeCard from '../../hooks/useAddCard';
+import type { Collection } from '../../types';
 
 export default function AddCard(): JSX.Element {
   const [selectedLanguage, setSelectedLanguage] = useState('html');
   const [newTitle, setNewTitle] = useState('');
   const [content, setContent] = useState('//Your Highlighted Code');
-  const [selectedCollections, setSelectedCollections] = useState([]);
+  const [selectedCollections, setSelectedCollections] = useState<
+    { children: string; language: string }[]
+  >([]);
 
   const languageList = Object.values(LANGUAGES);
   const tagLanguageList = languageList.map((language) => {
@@ -34,9 +37,19 @@ export default function AddCard(): JSX.Element {
     return {
       children: collection.name,
       language: collection.language,
-      onClick: () => setSelectedCollections(selectedCollections),
+      onClick: () => addToCard(collection),
     };
   });
+  function addToCard(collection: Collection) {
+    const addedCollection = {
+      children: collection.name,
+      language: collection.language,
+    };
+    console.log(addedCollection);
+    const allSelectedCollections = [...selectedCollections, addedCollection];
+    setSelectedCollections(allSelectedCollections);
+  }
+
   const { addCodeCard } = useCodeCard();
   function addCard() {
     const newCard = {
