@@ -7,23 +7,28 @@ import Header from '../Header/Header';
 import AddButton from '../Buttons/AddButton/AddButton';
 
 type CollectionTagGroup = {
-  children: string;
+  allCollections: { children: string; language: string }[];
+  selectedCollections: string[];
 };
 
-function CollectionTags(): JSX.Element {
-  //All Collections
-  const allCollections: CollectionTagGroup[] = [];
+function CollectionTags({
+  allCollections,
+  selectedCollections,
+}: CollectionTagGroup): JSX.Element {
+  // //All Collections
+
   const allCollectionList = allCollections.map((collection) => {
     return { children: collection };
   });
-  //All Collections END
 
-  //Selected Collections
-  const selectedCollections: CollectionTagGroup[] = [];
+  // //All Collections END
+
+  // //Selected Collections
+
   const selectedCollectionList = selectedCollections.map((collection) => {
     return { children: collection };
   });
-  //Selected Collections END
+  // //Selected Collections END
 
   //Modal function
   const [modalToggle, setModalToggle] = useState(false);

@@ -1,5 +1,4 @@
-import type { ChangeEvent } from 'react';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import Prism from 'prismjs';
 import styles from './CodeField.module.css';
 import '../../prism.css';
@@ -8,18 +7,22 @@ import { ScrollSync, ScrollSyncPane } from 'react-scroll-sync';
 export type CodeFieldProps = {
   layout?: 'detail' | 'compact';
   language: string;
+  content: string;
+  onChange: (value: string) => void;
 };
 
 export default function CodeField({
   layout = 'compact',
   language,
+  content,
+  onChange,
 }: CodeFieldProps): JSX.Element {
-  const [content, setContent] = useState('//Your Highlighted Code');
+  // const [content, setContent] = useState('//Your Highlighted Code');
 
-  function handleChange(event: ChangeEvent<HTMLTextAreaElement>) {
-    const { value } = event.target;
-    setContent(value);
-  }
+  // function handleChange(event: ChangeEvent<HTMLTextAreaElement>) {
+  // //    const { value } = event.target;
+  // //    setContent(value);
+  // //  }
 
   useEffect(() => {
     Prism.highlightAll();
@@ -44,7 +47,7 @@ export default function CodeField({
                 spellCheck="false"
                 className={styles.textBox}
                 placeholder="Write your Code here"
-                onChange={handleChange}
+                onChange={(event) => onChange(event.target.value)}
               />
             </ScrollSyncPane>
           </div>
