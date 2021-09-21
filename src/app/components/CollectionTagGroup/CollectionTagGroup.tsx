@@ -8,7 +8,7 @@ import AddButton from '../Buttons/AddButton/AddButton';
 
 type CollectionTagGroup = {
   allCollections: { children: string; language: string }[];
-  selectedCollections: string[];
+  selectedCollections: { children: string; language: string }[];
 };
 
 function CollectionTags({
@@ -17,17 +17,10 @@ function CollectionTags({
 }: CollectionTagGroup): JSX.Element {
   // //All Collections
 
-  const allCollectionList = allCollections.map((collection) => {
-    return { children: collection };
-  });
-
   // //All Collections END
 
   // //Selected Collections
 
-  const selectedCollectionList = selectedCollections.map((collection) => {
-    return { children: collection };
-  });
   // //Selected Collections END
 
   //Modal function
@@ -41,7 +34,7 @@ function CollectionTags({
   return (
     <>
       <div className={styles.collectionContainer}>
-        {selectedCollections && <TagGroup tagList={selectedCollectionList} />}
+        {selectedCollections && <TagGroup tagList={selectedCollections} />}
         <Tag active onClick={() => handleModal()}>
           Select Collection
         </Tag>
@@ -51,12 +44,9 @@ function CollectionTags({
           <div className={styles.modalContent}>
             <Header className={styles.headerModal}>Select Collections</Header>
             {allCollections && (
-              <TagGroup
-                className={styles.tagList}
-                tagList={allCollectionList}
-              />
+              <TagGroup className={styles.tagList} tagList={allCollections} />
             )}
-            {allCollectionList && (
+            {!allCollections && (
               <p className={styles.noCollections}>You have no Collections</p>
             )}
             <AddButton

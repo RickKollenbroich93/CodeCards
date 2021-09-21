@@ -6,9 +6,7 @@ import CardButtons from '../Buttons/CardButtons/CardButtons';
 import DeleteIcon from '../assets/DeleteIcon';
 import EditIcon from '../assets/EditIcon';
 import SubHeader from '../Header/SubHeader/SubHeader';
-import CollectionTagGroup from '../CollectionTagGroup/CollectionTagGroup';
-import useCollections from '../../hooks/useCollections';
-import { useState } from 'react';
+import TagGroup from '../TagGroup/TagGroup';
 
 export type CardProps = {
   language: string;
@@ -16,7 +14,7 @@ export type CardProps = {
   title: string;
   description?: string;
   onClick?: () => void;
-  cardCollections: string[];
+  cardCollections: { children: string; language: string }[];
 };
 
 export default function CodeCard({
@@ -34,16 +32,6 @@ export default function CodeCard({
     Prism.highlightAll();
   }, [language, content]);
 
-  const [selectedCollections, setSelectedCollections] = useState<string[]>([]);
-  const { collections } = useCollections();
-  const tagCollections = collections.map((Allcollections) => {
-    return {
-      children: Allcollections.name,
-      language: Allcollections.language,
-      onClick: () => setSelectedCollections(selectedCollections),
-    };
-  });
-
   return (
     <div className={styles.codeContainer}>
       <SubHeader>{title}</SubHeader>
@@ -60,10 +48,7 @@ export default function CodeCard({
           </CardButtons>
         </div>
       </div>
-      <CollectionTagGroup
-        selectedCollections={cardCollections}
-        allCollections={tagCollections}
-      />
+      <TagGroup tagList={cardCollections} />
     </div>
   );
 }

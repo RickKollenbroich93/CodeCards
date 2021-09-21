@@ -13,10 +13,10 @@ import useCollections from '../../hooks/useCollections';
 import useCodeCard from '../../hooks/useAddCard';
 
 export default function AddCard(): JSX.Element {
-  const [selectedLanguage, setSelectedLanguage] = useState<string>('html');
-  const [newTitle, setNewTitle] = useState<string>('');
+  const [selectedLanguage, setSelectedLanguage] = useState('html');
+  const [newTitle, setNewTitle] = useState('');
   const [content, setContent] = useState('//Your Highlighted Code');
-  const [selectedCollections, setSelectedCollections] = useState<string[]>([]);
+  const [selectedCollections, setSelectedCollections] = useState([]);
 
   const languageList = Object.values(LANGUAGES);
   const tagLanguageList = languageList.map((language) => {
@@ -30,10 +30,10 @@ export default function AddCard(): JSX.Element {
     setContent(value);
   }
   const { collections } = useCollections();
-  const tagCollections = collections.map((Allcollections) => {
+  const tagCollections = collections.map((collection) => {
     return {
-      children: Allcollections.name,
-      language: Allcollections.language,
+      children: collection.name,
+      language: collection.language,
       onClick: () => setSelectedCollections(selectedCollections),
     };
   });
