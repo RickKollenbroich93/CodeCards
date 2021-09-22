@@ -40,7 +40,7 @@ export default function Home(): JSX.Element {
   );
 
   const searchedCard = filteredCards.filter(
-    (card) => card.title === searchValue
+    (card) => card.title.toLowerCase() === searchValue.toLowerCase()
   );
 
   const [modalToggle, setModalToggle] = useState(false);
