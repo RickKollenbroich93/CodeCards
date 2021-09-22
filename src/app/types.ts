@@ -3,7 +3,7 @@ export type Collection = {
   language: string;
   onClick?: () => void;
 };
-export type CodeCard = {
+export type CodeCards = {
   title: string;
   language: string;
   content: string;
