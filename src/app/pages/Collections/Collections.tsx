@@ -85,7 +85,7 @@ export default function Collections(): JSX.Element {
         <TagGroup className={styles.tagGroupPos} tagList={tagLanguageList} />
       </section>
       <SubHeader className={styles.headerPos}>
-        {selectedLanguage}
+        {selectedLanguage.toUpperCase()}
         <HeaderSpacer className={styles.headerSpacer} />
         Collections
       </SubHeader>
@@ -98,7 +98,7 @@ export default function Collections(): JSX.Element {
         )}
         {filteredCollections.length === 0 && (
           <div className={styles.noCollections}>
-            <p>Sorry!!!</p>
+            <p>!!!Sorry!!!</p>
             <p>
               You don`t have any {selectedLanguage.toUpperCase()} Collections
             </p>
