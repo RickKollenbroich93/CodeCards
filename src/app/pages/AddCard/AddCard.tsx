@@ -12,8 +12,12 @@ import AddButton from '../../components/Buttons/AddButton/AddButton';
 import useCollections from '../../hooks/useCollections';
 import useCodeCard from '../../hooks/useAddCard';
 import type { Collection } from '../../types';
+import { useHistory } from 'react-router';
 
 export default function AddCard(): JSX.Element {
+  const { addCodeCard } = useCodeCard();
+  const history = useHistory();
+
   const [selectedLanguage, setSelectedLanguage] = useState('html');
   const [newTitle, setNewTitle] = useState('');
   const [content, setContent] = useState('//Your Highlighted Code');
@@ -45,12 +49,11 @@ export default function AddCard(): JSX.Element {
       children: collection.name,
       language: collection.language,
     };
-    console.log(addedCollection);
+
     const allSelectedCollections = [...selectedCollections, addedCollection];
     setSelectedCollections(allSelectedCollections);
   }
 
-  const { addCodeCard } = useCodeCard();
   function addCard() {
     const newCard = {
       title: newTitle,
@@ -70,7 +73,14 @@ export default function AddCard(): JSX.Element {
           NewCard
         </Header>
       </section>
-      <form className={styles.formWrapper}>
+      <form
+        className={styles.formWrapper}
+        onSubmit={(event) => {
+          event.preventDefault();
+          addCard();
+          history.push('/');
+        }}
+      >
         <TagGroup tagList={tagLanguageList} className={styles.taggroup} />
         <input
           type="text"
@@ -88,7 +98,7 @@ export default function AddCard(): JSX.Element {
           allCollections={tagCollections}
           selectedCollections={selectedCollections}
         />
-        <AddButton type="submit" children="Add new Card" onClick={addCard} />
+        <AddButton type="submit" children="Add new Card" />
       </form>
       <section className={styles.navSection}>
         <Navigation activeLink="add" />

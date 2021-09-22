@@ -17,13 +17,6 @@ export default function CodeField({
   content,
   onChange,
 }: CodeFieldProps): JSX.Element {
-  // const [content, setContent] = useState('//Your Highlighted Code');
-
-  // function handleChange(event: ChangeEvent<HTMLTextAreaElement>) {
-  // //    const { value } = event.target;
-  // //    setContent(value);
-  // //  }
-
   useEffect(() => {
     Prism.highlightAll();
   }, []);
