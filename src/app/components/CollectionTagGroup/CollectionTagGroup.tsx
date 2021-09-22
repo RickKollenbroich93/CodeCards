@@ -28,7 +28,6 @@ function CollectionTags({
   function handleModal() {
     setModalToggle(!modalToggle);
   }
-
   //Modal function END
 
   return (
