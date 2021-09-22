@@ -1,6 +1,6 @@
 import React from 'react';
-import styles from './Tag.module.css';
 import type { ReactNode } from 'react';
+import styles from './Tag.module.css';
 
 type TagProps = {
   active?: boolean;

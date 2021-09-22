@@ -11,5 +11,15 @@ export default {
   },
 };
 
-export const AddCard = (): JSX.Element => <CollectionTagGroup />;
-export const EditCard = (): JSX.Element => <CollectionTagGroup />;
+export const AddCard = (): JSX.Element => (
+  <CollectionTagGroup
+    allCollections={[
+      { children: 'Bla', language: 'html' },
+      { children: 'Bla', language: 'html' },
+    ]}
+    selectedCollections={[
+      { children: 'Bla', language: 'html' },
+      { children: 'Bla', language: 'html' },
+    ]}
+  />
+);

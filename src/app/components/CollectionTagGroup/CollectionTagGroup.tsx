@@ -7,23 +7,21 @@ import Header from '../Header/Header';
 import AddButton from '../Buttons/AddButton/AddButton';
 
 type CollectionTagGroup = {
-  children: string;
+  allCollections: { children: string; language: string }[];
+  selectedCollections: { children: string; language: string }[];
 };
 
-function CollectionTags(): JSX.Element {
-  //All Collections
-  const allCollections: CollectionTagGroup[] = [];
-  const allCollectionList = allCollections.map((collection) => {
-    return { children: collection };
-  });
-  //All Collections END
+function CollectionTags({
+  allCollections,
+  selectedCollections,
+}: CollectionTagGroup): JSX.Element {
+  // //All Collections
 
-  //Selected Collections
-  const selectedCollections: CollectionTagGroup[] = [];
-  const selectedCollectionList = selectedCollections.map((collection) => {
-    return { children: collection };
-  });
-  //Selected Collections END
+  // //All Collections END
+
+  // //Selected Collections
+
+  // //Selected Collections END
 
   //Modal function
   const [modalToggle, setModalToggle] = useState(false);
@@ -35,8 +33,10 @@ function CollectionTags(): JSX.Element {
 
   return (
     <>
+      {selectedCollections && (
+        <TagGroup className={styles.tagSize} tagList={selectedCollections} />
+      )}
       <div className={styles.collectionContainer}>
-        {selectedCollections && <TagGroup tagList={selectedCollectionList} />}
         <Tag active onClick={() => handleModal()}>
           Select Collection
         </Tag>
@@ -46,12 +46,9 @@ function CollectionTags(): JSX.Element {
           <div className={styles.modalContent}>
             <Header className={styles.headerModal}>Select Collections</Header>
             {allCollections && (
-              <TagGroup
-                className={styles.tagList}
-                tagList={allCollectionList}
-              />
+              <TagGroup className={styles.tagList} tagList={allCollections} />
             )}
-            {allCollectionList && (
+            {!allCollections && (
               <p className={styles.noCollections}>You have no Collections</p>
             )}
             <AddButton

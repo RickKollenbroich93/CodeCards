@@ -14,12 +14,12 @@ export default {
 };
 
 export const SearchButton = (): JSX.Element => (
-  <InputButton>
+  <InputButton onClick={() => console.log('hey')}>
     <SearchIcon />
   </InputButton>
 );
 export const AddButton = (): JSX.Element => (
-  <InputButton>
+  <InputButton onClick={() => console.log('hey')}>
     <AddIcon />
     ADD
   </InputButton>

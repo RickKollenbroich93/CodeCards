@@ -48,5 +48,5 @@
 .modalContent {
   display: grid;
   gap: 10px;
-  padding-top: 30%;
+  padding: 15rem 1rem 1rem 1rem;
 }

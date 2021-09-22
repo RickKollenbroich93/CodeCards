@@ -1,8 +1,8 @@
 .collectionContainer {
-  display: flex;
-  gap: 0.5rem;
-  padding-right: 0.5rem;
   justify-self: center;
+}
+.tagSize {
+  height: 2.5rem;
 }
 .modal {
   position: absolute;

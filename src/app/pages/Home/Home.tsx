@@ -8,6 +8,7 @@ import TagGroup from '../../components/TagGroup/TagGroup';
 import { LANGUAGES } from '../../components/lib/languageMap';
 import CodeCard from '../../components/CodeCard/CodeCard';
 import Navigation from '../../components/Navigation/Navigation';
+import useCodeCard from '../../hooks/useAddCard';
 
 export default function Home(): JSX.Element {
   const [selectedLanguage, setSelectedLanguage] = useState<string>('html');
@@ -22,28 +23,17 @@ export default function Home(): JSX.Element {
     };
   });
 
-  //Mock cards
-  const mockCards = [
-    { language: 'js', content: 'const a = 23;', title: 'JS CodeCard' },
-    {
-      language: 'js',
-      content:
-        'export default function home(){\n for(int i=0 , i < 10 , i++){\n console.log(i) \n}\n}',
-      title: 'JS CodeCard 2',
-    },
-    {
-      language: 'css',
-      content: '.container{\n display:grid; \n}',
-      title: 'CSS CodeCard',
-    },
-    // {
-    //   language: 'html',
-    //   content: '<h1>Hello World!</h1>',
-    //   title: 'HTML CodeCard',
-    // },
-  ];
-  //End of MockCards
-  const filteredCards = mockCards.filter(
+  const { codeCards } = useCodeCard();
+  //Get all CodeCards
+  const allCodeCards = codeCards.map((codeCard) => {
+    return {
+      title: codeCard.title,
+      content: codeCard.content,
+      language: codeCard.language,
+      collections: codeCard.collections,
+    };
+  });
+  const filteredCards = allCodeCards.filter(
     (cards) => cards.language === selectedLanguage
   );
 
@@ -75,6 +65,7 @@ export default function Home(): JSX.Element {
               language={card.language}
               content={card.content}
               title={card.title}
+              cardCollections={card.collections}
             />
           ))}
         {searchedCard &&
@@ -83,6 +74,7 @@ export default function Home(): JSX.Element {
               language={card.language}
               content={card.content}
               title={card.title}
+              cardCollections={card.collections}
             />
           ))}
         {filteredCards.length === 0 && (

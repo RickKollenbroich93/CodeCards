@@ -12,5 +12,12 @@ export default {
 };
 
 export const CardJs = (): JSX.Element => {
-  return <CodeCard language="js" content="const a = 23;" title="JS-Card" />;
+  return (
+    <CodeCard
+      language="js"
+      content="const a = 23;"
+      title="JS-Card"
+      cardCollections={[{ children: 'bla', language: 'bla' }]}
+    />
+  );
 };

@@ -11,11 +11,17 @@ export default {
   },
 };
 export const CardHtml = (): JSX.Element => {
-  return <CodeField language="html" />;
+  return (
+    <CodeField language="html" onChange={() => console.log('Hey')} content="" />
+  );
 };
 export const CardCss = (): JSX.Element => {
-  return <CodeField language="css" />;
+  return (
+    <CodeField language="css" onChange={() => console.log('Hey')} content="" />
+  );
 };
 export const CardJs = (): JSX.Element => {
-  return <CodeField language="js" />;
+  return (
+    <CodeField language="js" onChange={() => console.log('Hey')} content="" />
+  );
 };

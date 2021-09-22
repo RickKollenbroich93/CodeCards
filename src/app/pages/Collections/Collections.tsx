@@ -9,13 +9,14 @@ import { LANGUAGES } from '../../components/lib/languageMap';
 import Navigation from '../../components/Navigation/Navigation';
 import AddButton from '../../components/Buttons/AddButton/AddButton';
 import SubHeader from '../../components/Header/SubHeader/SubHeader';
+import useCollections from '../../hooks/useCollections';
 
 export default function Collections(): JSX.Element {
   const [selectedLanguage, setSelectedLanguage] = useState<string>('html');
   const [selectedLanguageModal, setSelectedLanguageModal] =
     useState<string>('html');
   const [searchValue, setSearchValue] = useState<string>('');
-  //   const [allCollections, setAllCollections] = useState([]);
+  const [addNewCollection, setAddNewCollection] = useState<string>('');
 
   const languageList = Object.values(LANGUAGES);
   //Select language for search Collections
@@ -35,27 +36,18 @@ export default function Collections(): JSX.Element {
     };
   });
 
-  //All MockCollections
-  const MockAllCollections = [
-    { children: 'JS-Collection', language: 'js' },
-    { children: 'JS-Collection', language: 'js' },
-    { children: 'JS-Collection', language: 'js' },
-    { children: 'JS-Collection', language: 'js' },
-    { children: 'JS-Collection', language: 'js' },
-    { children: 'JS-Collection', language: 'js' },
-    { children: 'JS-Collection', language: 'js' },
-    { children: 'hallo', language: 'js' },
-    { children: 'JS-Collection', language: 'js' },
-    { children: 'JS-Collection', language: 'js' },
-    { children: 'JS-Collection', language: 'js' },
-    { children: 'CSS-Collection', language: 'css' },
-    { children: 'CSS-Collection', language: 'css' },
-    { children: 'CSS-Collection', language: 'css' },
-  ];
-  //All MockCollections END
+  //All Collections
+  const { collections, addCollection } = useCollections();
+  const tagCollections = collections.map((Allcollections) => {
+    return {
+      children: Allcollections.name,
+      language: Allcollections.language,
+    };
+  });
+  //All Collections END
 
   //Filter Collections by Language
-  const filteredCollections = MockAllCollections.filter(
+  const filteredCollections = tagCollections.filter(
     (collections) => collections.language === selectedLanguage
   );
   //Filter Collections by Language END
@@ -70,7 +62,13 @@ export default function Collections(): JSX.Element {
   //Modal function
   const [modalToggle, setModalToggle] = useState(false);
   function handleModal() {
+    const collection = {
+      language: selectedLanguageModal,
+      name: addNewCollection,
+    };
+    addCollection(collection);
     setModalToggle(!modalToggle);
+    setAddNewCollection('');
   }
   //Modal function END
 
@@ -87,7 +85,7 @@ export default function Collections(): JSX.Element {
         <TagGroup className={styles.tagGroupPos} tagList={tagLanguageList} />
       </section>
       <SubHeader className={styles.headerPos}>
-        {selectedLanguage}
+        {selectedLanguage.toUpperCase()}
         <HeaderSpacer className={styles.headerSpacer} />
         Collections
       </SubHeader>
@@ -100,7 +98,7 @@ export default function Collections(): JSX.Element {
         )}
         {filteredCollections.length === 0 && (
           <div className={styles.noCollections}>
-            <p>Sorry!!!</p>
+            <p>!!!Sorry!!!</p>
             <p>
               You don`t have any {selectedLanguage.toUpperCase()} Collections
             </p>
@@ -110,7 +108,7 @@ export default function Collections(): JSX.Element {
       <AddButton
         type="button"
         children="Add Collection"
-        onClick={() => handleModal()}
+        onClick={() => setModalToggle(true)}
       />
       {modalToggle && (
         <section className={styles.modal}>
@@ -127,8 +125,8 @@ export default function Collections(): JSX.Element {
             <SearchBar
               type="add"
               handleSubmit={() => handleModal()}
-              searchValue={searchValue}
-              onChange={(event) => setSearchValue(event.target.value)}
+              searchValue={addNewCollection}
+              onChange={(event) => setAddNewCollection(event.target.value)}
             />
           </form>
         </section>
