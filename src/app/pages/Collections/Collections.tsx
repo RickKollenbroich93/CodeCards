@@ -128,6 +128,13 @@ export default function Collections(): JSX.Element {
               searchValue={addNewCollection}
               onChange={(event) => setAddNewCollection(event.target.value)}
             />
+            <AddButton
+              className={styles.addButtonPos}
+              type="button"
+              onClick={() => setModalToggle(false)}
+            >
+              Close
+            </AddButton>
           </form>
         </section>
       )}
