@@ -1,22 +1,28 @@
 import useLocalStorage from './useLocalStorage';
-import type { CodeCard } from '../types';
+import type { CodeCards } from '../types';
 
 export default function useCodeCard(): {
-  codeCards: CodeCard[];
-  addCodeCard: (codeCard: CodeCard) => void;
-  removeCodeCard: (newCodeCard: CodeCard) => void;
+  codeCards: CodeCards[];
+  addCodeCard: (codeCard: CodeCards) => void;
+  removeCodeCard: (newCodeCard: CodeCards) => void;
 } {
-  const [codeCards, setCodeCards] = useLocalStorage<CodeCard[]>(
+  const [codeCards, setCodeCards] = useLocalStorage<CodeCards[]>(
     'codeCards',
     []
   );
 
-  function addCodeCard(codeCard: CodeCard) {
+  function addCodeCard(codeCard: CodeCards) {
     setCodeCards([...codeCards, codeCard]);
   }
 
-  function removeCodeCard(newCodeCard: CodeCard) {
-    setCodeCards(codeCards.filter((codeCard) => codeCard !== newCodeCard));
+  function removeCodeCard(newCodeCard: CodeCards) {
+    setCodeCards(
+      codeCards.filter(
+        (codeCard) =>
+          codeCard.content !== newCodeCard.content &&
+          codeCard.title !== newCodeCard.title
+      )
+    );
   }
 
   return { codeCards, addCodeCard, removeCodeCard };

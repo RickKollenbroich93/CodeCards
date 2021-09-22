@@ -13,7 +13,8 @@ export type CardProps = {
   content: string;
   title: string;
   description?: string;
-  onClick?: () => void;
+  onDeleteClick?: () => void;
+  onEditClick?: () => void;
   cardCollections: { children: string; language: string }[];
 };
 
@@ -21,7 +22,8 @@ export default function CodeCard({
   language,
   content,
   title,
-  onClick,
+  onDeleteClick,
+  onEditClick,
   cardCollections,
 }: CardProps): JSX.Element {
   useEffect(() => {
@@ -40,10 +42,10 @@ export default function CodeCard({
           <code className={`language-${language}`}>{content}</code>
         </pre>
         <div className={styles.buttonWrapper}>
-          <CardButtons onClick={onClick}>
+          <CardButtons onClick={onDeleteClick}>
             <DeleteIcon />
           </CardButtons>
-          <CardButtons onClick={onClick}>
+          <CardButtons onClick={onEditClick}>
             <EditIcon />
           </CardButtons>
         </div>

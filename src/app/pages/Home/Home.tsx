@@ -9,8 +9,11 @@ import { LANGUAGES } from '../../components/lib/languageMap';
 import CodeCard from '../../components/CodeCard/CodeCard';
 import Navigation from '../../components/Navigation/Navigation';
 import useCodeCard from '../../hooks/useAddCard';
+import type { CodeCards } from '../../types';
+import AddButton from '../../components/Buttons/AddButton/AddButton';
 
 export default function Home(): JSX.Element {
+  const { codeCards, removeCodeCard } = useCodeCard();
   const [selectedLanguage, setSelectedLanguage] = useState<string>('html');
   const [searchValue, setSearchValue] = useState<string>('');
 
@@ -23,7 +26,6 @@ export default function Home(): JSX.Element {
     };
   });
 
-  const { codeCards } = useCodeCard();
   //Get all CodeCards
   const allCodeCards = codeCards.map((codeCard) => {
     return {
@@ -40,6 +42,19 @@ export default function Home(): JSX.Element {
   const searchedCard = filteredCards.filter(
     (card) => card.title === searchValue
   );
+
+  const [modalToggle, setModalToggle] = useState(false);
+  const [deleteCard, setDeleteCard] = useState<CodeCards>({
+    title: '',
+    content: '',
+    language: '',
+    collections: [],
+  });
+
+  function handleDeleteClick(card: CodeCards) {
+    removeCodeCard(card);
+    setModalToggle(false);
+  }
 
   return (
     <div className={styles.container}>
@@ -60,12 +75,15 @@ export default function Home(): JSX.Element {
       <section className={styles.cardContainer}>
         {filteredCards &&
           searchValue === '' &&
-          filteredCards.map((card) => (
+          filteredCards.map((card: CodeCards) => (
             <CodeCard
               language={card.language}
               content={card.content}
               title={card.title}
               cardCollections={card.collections}
+              onDeleteClick={() => {
+                setModalToggle(true), setDeleteCard(card);
+              }}
             />
           ))}
         {searchedCard &&
@@ -87,6 +105,21 @@ export default function Home(): JSX.Element {
       <section>
         <Navigation activeLink="home"></Navigation>
       </section>
+      {modalToggle && (
+        <section className={styles.modal} id="modal">
+          <div className={styles.warning}>
+            <p>DELETE</p>
+            <p className={styles.titleColor}>" {deleteCard.title} "</p>
+            <p>Are you sure</p>
+            <div className={styles.buttonWrapper}>
+              <AddButton onClick={() => handleDeleteClick(deleteCard)}>
+                Yes
+              </AddButton>
+              <AddButton onClick={() => setModalToggle(false)}>No</AddButton>
+            </div>
+          </div>
+        </section>
+      )}
     </div>
   );
 }
