@@ -4,8 +4,10 @@ import Tag from '../Tag/Tag';
 import styles from './TagGroup.module.css';
 
 type TagProps = {
+  editable?: boolean;
   active?: boolean;
   onClick?: () => void;
+  onDeleteClick?: () => void;
   children: ReactNode;
   className?: string;
   language?: string;
@@ -21,7 +23,13 @@ const TagGroup = ({ tagList, className }: TagGroupProps): JSX.Element => {
     <section className={`${styles.container} ${className}`}>
       {tagList &&
         tagList.map((tag, index) => (
-          <Tag key={index} active={tag.active} onClick={tag.onClick}>
+          <Tag
+            key={index}
+            active={tag.active}
+            onClick={tag.onClick}
+            editable={tag.editable}
+            onDeleteClick={tag.onDeleteClick}
+          >
             {tag.children}
           </Tag>
         ))}

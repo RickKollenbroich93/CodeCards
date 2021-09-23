@@ -53,3 +53,6 @@
 .addButtonPos {
   margin-top: 5rem;
 }
+input[type='search']::-webkit-search-cancel-button {
+  display: none;
+}

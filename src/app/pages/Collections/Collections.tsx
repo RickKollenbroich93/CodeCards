@@ -37,11 +37,13 @@ export default function Collections(): JSX.Element {
   });
 
   //All Collections
-  const { collections, addCollection } = useCollections();
+  const { collections, addCollection, removeCollection } = useCollections();
   const tagCollections = collections.map((Allcollections) => {
     return {
       children: Allcollections.name,
       language: Allcollections.language,
+      editable: true,
+      onDeleteClick: () => removeCollection(Allcollections),
     };
   });
   //All Collections END

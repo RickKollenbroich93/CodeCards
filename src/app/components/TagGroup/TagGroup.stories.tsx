@@ -17,6 +17,7 @@ const tags = [
   {
     active: true,
     children: 'All',
+    editable: true,
   },
   {
     active: false,
