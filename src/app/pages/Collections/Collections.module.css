@@ -56,3 +56,17 @@
 input[type='search']::-webkit-search-cancel-button {
   display: none;
 }
+.buttonWrapperModal {
+  display: flex;
+  gap: 10rem;
+  justify-content: center;
+}
+.titleColor {
+  color: var(--color-primary);
+}
+.warning {
+  font-size: 2rem;
+  font-family: var(--font-face);
+  color: var(--text-primary);
+  text-align: center;
+}

@@ -10,6 +10,7 @@ import Navigation from '../../components/Navigation/Navigation';
 import AddButton from '../../components/Buttons/AddButton/AddButton';
 import SubHeader from '../../components/Header/SubHeader/SubHeader';
 import useCollections from '../../hooks/useCollections';
+import type { Collection } from '../../types';
 
 export default function Collections(): JSX.Element {
   const [selectedLanguage, setSelectedLanguage] = useState<string>('html');
@@ -35,7 +36,10 @@ export default function Collections(): JSX.Element {
       active: selectedLanguageModal === language,
     };
   });
-
+  const [deleteCollection, setDeleteCollection] = useState<Collection>({
+    name: '',
+    language: '',
+  });
   //All Collections
   const { collections, addCollection, removeCollection } = useCollections();
   const tagCollections = collections.map((Allcollections) => {
@@ -43,11 +47,17 @@ export default function Collections(): JSX.Element {
       children: Allcollections.name,
       language: Allcollections.language,
       editable: true,
-      onDeleteClick: () => removeCollection(Allcollections),
+      onDeleteClick: () => {
+        setModalToggleDelete(true), setDeleteCollection(Allcollections);
+      },
     };
   });
   //All Collections END
 
+  function handleDeleteClick(deleteCollection: Collection) {
+    removeCollection(deleteCollection);
+    setModalToggleDelete(false);
+  }
   //Filter Collections by Language
   const filteredCollections = tagCollections.filter(
     (collections) => collections.language === selectedLanguage
@@ -63,6 +73,7 @@ export default function Collections(): JSX.Element {
 
   //Modal function
   const [modalToggle, setModalToggle] = useState(false);
+  const [modalToggleDelete, setModalToggleDelete] = useState(false);
   function handleModal() {
     const collection = {
       language: selectedLanguageModal,
@@ -138,6 +149,23 @@ export default function Collections(): JSX.Element {
               Close
             </AddButton>
           </form>
+        </section>
+      )}
+      {modalToggleDelete && (
+        <section className={styles.modal} id="modal">
+          <div className={styles.warning}>
+            <p>DELETE</p>
+            <p className={styles.titleColor}>" {deleteCollection.name} "</p>
+            <p>Are you sure</p>
+            <div className={styles.buttonWrapperModal}>
+              <AddButton onClick={() => handleDeleteClick(deleteCollection)}>
+                Yes
+              </AddButton>
+              <AddButton onClick={() => setModalToggleDelete(false)}>
+                No
+              </AddButton>
+            </div>
+          </div>
         </section>
       )}
       <section>
