@@ -42,12 +42,18 @@ export default function AddCard(): JSX.Element {
       children: collection.name,
       language: collection.language,
       onClick: () => addToCard(collection),
+      //Here is Error
+      active: selectedCollections.find((element) => element, {
+        children: collection.name,
+        language: collection.language,
+      }),
     };
   });
   function addToCard(collection: Collection) {
     const addedCollection = {
       children: collection.name,
       language: collection.language,
+      onClick: collection.onClick,
     };
 
     const allSelectedCollections = [...selectedCollections, addedCollection];
