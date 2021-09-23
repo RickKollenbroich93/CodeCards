@@ -43,7 +43,6 @@ export default function AddCard(): JSX.Element {
       children: collection.name,
       language: collection.language,
       onClick: () => addToCard(collection),
-      //Here is Error
       active: selectedCollections.some(
         (selectedCollections) =>
           selectedCollections.children === collection.name
