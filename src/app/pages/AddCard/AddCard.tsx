@@ -43,10 +43,14 @@ export default function AddCard(): JSX.Element {
       language: collection.language,
       onClick: () => addToCard(collection),
       //Here is Error
-      active: selectedCollections.find((element) => element, {
-        children: collection.name,
-        language: collection.language,
-      }),
+      active: selectedCollections.find(
+        (element) =>
+          element ===
+          {
+            children: collection.name,
+            language: collection.language,
+          }
+      ),
     };
   });
   function addToCard(collection: Collection) {
