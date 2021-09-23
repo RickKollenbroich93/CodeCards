@@ -37,19 +37,16 @@ export default function AddCard(): JSX.Element {
     setContent(value);
   }
   const { collections } = useCollections();
+
   const tagCollections = collections.map((collection) => {
     return {
       children: collection.name,
       language: collection.language,
       onClick: () => addToCard(collection),
       //Here is Error
-      active: selectedCollections.find(
-        (element) =>
-          element ===
-          {
-            children: collection.name,
-            language: collection.language,
-          }
+      active: selectedCollections.some(
+        (selectedCollections) =>
+          selectedCollections.children === collection.name
       ),
     };
   });
