@@ -73,6 +73,8 @@ export default function Home(): JSX.Element {
       collections: deleteCard.collections,
     };
     editCodeCard(deleteCard, editCard);
+    console.log(deleteCard);
+    console.log(editCard);
     setEditModalToggle(false);
   }
   function handleChange(value: string) {
