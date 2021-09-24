@@ -11,11 +11,29 @@ import Navigation from '../../components/Navigation/Navigation';
 import useCodeCard from '../../hooks/useAddCard';
 import type { CodeCards } from '../../types';
 import AddButton from '../../components/Buttons/AddButton/AddButton';
+import CodeField from '../../components/CodeField/CodeField';
 
 export default function Home(): JSX.Element {
-  const { codeCards, removeCodeCard } = useCodeCard();
+  //Modal Toggle useStates
+  const [deleteModalToggle, setDeleteModalToggle] = useState(false);
+  const [editModalToggle, setEditModalToggle] = useState(false);
+  // const [showCollectionModalToggle, setShowCollectioModalToggle] =
+  //   useState(false);
+  // Modal Toggle useStates END
+
+  //EditCard useStates
+  const [newTitle, setNewTitle] = useState('');
+  const [content, setContent] = useState('//Your Highlighted Code');
+  //EditCard useStates END
+  const { codeCards, removeCodeCard, editCodeCard } = useCodeCard();
   const [selectedLanguage, setSelectedLanguage] = useState<string>('html');
   const [searchValue, setSearchValue] = useState<string>('');
+  const [deleteCard, setDeleteCard] = useState<CodeCards>({
+    title: '',
+    content: '',
+    language: '',
+    collections: [],
+  });
 
   const languageList = Object.values(LANGUAGES);
   const tagLanguageList = languageList.map((language) => {
@@ -43,17 +61,22 @@ export default function Home(): JSX.Element {
     (card) => card.title.toLowerCase() === searchValue.toLowerCase()
   );
 
-  const [modalToggle, setModalToggle] = useState(false);
-  const [deleteCard, setDeleteCard] = useState<CodeCards>({
-    title: '',
-    content: '',
-    language: '',
-    collections: [],
-  });
-
   function handleDeleteClick(card: CodeCards) {
     removeCodeCard(card);
-    setModalToggle(false);
+    setDeleteModalToggle(false);
+  }
+  function handleEditClick() {
+    const editCard = {
+      title: newTitle,
+      content: content,
+      language: deleteCard.language,
+      collections: deleteCard.collections,
+    };
+    editCodeCard(deleteCard, editCard);
+    setEditModalToggle(false);
+  }
+  function handleChange(value: string) {
+    setContent(value);
   }
 
   return (
@@ -81,8 +104,14 @@ export default function Home(): JSX.Element {
               content={card.content}
               title={card.title}
               cardCollections={card.collections}
+              onEditClick={() => {
+                setEditModalToggle(true),
+                  setContent(card.content),
+                  setNewTitle(card.title),
+                  setDeleteCard(card);
+              }}
               onDeleteClick={() => {
-                setModalToggle(true), setDeleteCard(card);
+                setDeleteModalToggle(true), setDeleteCard(card);
               }}
             />
           ))}
@@ -105,7 +134,7 @@ export default function Home(): JSX.Element {
       <section>
         <Navigation activeLink="home"></Navigation>
       </section>
-      {modalToggle && (
+      {deleteModalToggle && (
         <section className={styles.modal} id="modal">
           <div className={styles.warning}>
             <p>DELETE</p>
@@ -115,8 +144,39 @@ export default function Home(): JSX.Element {
               <AddButton onClick={() => handleDeleteClick(deleteCard)}>
                 Yes
               </AddButton>
-              <AddButton onClick={() => setModalToggle(false)}>No</AddButton>
+              <AddButton onClick={() => setDeleteModalToggle(false)}>
+                No
+              </AddButton>
             </div>
+          </div>
+        </section>
+      )}
+      {editModalToggle && (
+        <section className={styles.modal} id="modal">
+          <Header>
+            Edit
+            <HeaderSpacer />
+            Card
+          </Header>
+          <div className={styles.editWrapper}>
+            <input
+              type="text"
+              placeholder="Card Title"
+              value={newTitle}
+              className={styles.titleInput}
+              onChange={(event) => setNewTitle(event.target.value)}
+            />
+            <CodeField
+              language={deleteCard.language}
+              content={content}
+              onChange={handleChange}
+            />
+          </div>
+          <div className={styles.editButtonWrapper}>
+            <AddButton onClick={() => handleEditClick()}>Confirm</AddButton>
+            <AddButton onClick={() => setEditModalToggle(false)}>
+              Abort
+            </AddButton>
           </div>
         </section>
       )}
