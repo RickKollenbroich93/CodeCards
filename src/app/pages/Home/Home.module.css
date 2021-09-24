@@ -29,7 +29,8 @@
   color: var(--text-primary);
   text-align: center;
 }
-.modal {
+.modal,
+.modalEdit {
   position: absolute;
   top: 0;
   left: 0;
@@ -41,6 +42,10 @@
   background-color: rgba(32, 32, 32, 0.65);
   padding-top: 10rem;
 }
+.modalEdit {
+  overflow: scroll;
+}
+
 .titleColor {
   color: var(--color-primary);
 }
@@ -56,4 +61,34 @@
 .collectionModal {
   display: grid;
   justify-content: center;
+}
+.titleInput {
+  background-color: var(--bg-card);
+  border-style: none;
+  font-family: var(--font-face);
+  font-size: 2rem;
+  text-align: center;
+  color: var(--text-secondary);
+  width: 100%;
+  border-radius: 10px;
+  justify-self: center;
+}
+.titleInput:focus {
+  outline: none;
+}
+.editModalWrapper {
+  display: grid;
+}
+.headerWrapper {
+  display: grid;
+  justify-self: center;
+}
+.modalHeaderPos {
+  justify-self: center;
+}
+
+@media only screen and (max-width: 600px) {
+  .modalEdit {
+    padding-top: 1rem;
+  }
 }

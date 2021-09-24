@@ -65,6 +65,10 @@ export default function Home(): JSX.Element {
     removeCodeCard(card);
     setDeleteModalToggle(false);
   }
+  function handleChange(value: string) {
+    setContent(value);
+  }
+  // EDIT CARD ----------------------------------------------------------<Start>
   function handleEditClick() {
     const editCard = {
       title: newTitle,
@@ -72,15 +76,14 @@ export default function Home(): JSX.Element {
       language: deleteCard.language,
       collections: deleteCard.collections,
     };
-    editCodeCard(deleteCard, editCard);
-    console.log(deleteCard);
     console.log(editCard);
+    console.log(deleteCard);
+    editCodeCard(deleteCard, editCard);
+
     setEditModalToggle(false);
   }
-  function handleChange(value: string) {
-    setContent(value);
-  }
-  //BAUSTELLE -----------------------------------------------------------<HERE>
+  // EDIT CARD ----------------------------------------------------------<END>
+  // BAUSTELLE ----------------------------------------------------------<Start>
   const [showCollection, setShowCollection] = useState<string>('');
   const [collectionTitle, setCollectionTitle] = useState<string>('');
   function buildCollection(
@@ -99,7 +102,7 @@ export default function Home(): JSX.Element {
     });
     return useCollections;
   }
-  //BAUSTELLE -----------------------------------------------------------<HERE>
+  //BAUSTELLE -----------------------------------------------------------<END>
 
   return (
     <div className={styles.container}>
@@ -174,31 +177,35 @@ export default function Home(): JSX.Element {
         </section>
       )}
       {editModalToggle && (
-        <section className={styles.modal} id="modal">
-          <Header>
-            Edit
-            <HeaderSpacer />
-            Card
-          </Header>
-          <div className={styles.editWrapper}>
-            <input
-              type="text"
-              placeholder="Card Title"
-              value={newTitle}
-              className={styles.titleInput}
-              onChange={(event) => setNewTitle(event.target.value)}
-            />
+        <section className={styles.modalEdit} id="modal">
+          <div className={styles.editModalWrapper}>
+            <div className={styles.headerWrapper}>
+              <Header className={styles.modalHeaderPos}>
+                Edit
+                <HeaderSpacer />
+                Card
+              </Header>
+
+              <input
+                type="text"
+                placeholder="Card Title"
+                value={newTitle}
+                className={styles.titleInput}
+                onChange={(event) => setNewTitle(event.target.value)}
+              />
+            </div>
             <CodeField
               language={deleteCard.language}
               content={content}
               onChange={handleChange}
             />
-          </div>
-          <div className={styles.editButtonWrapper}>
-            <AddButton onClick={() => handleEditClick()}>Confirm</AddButton>
-            <AddButton onClick={() => setEditModalToggle(false)}>
-              Abort
-            </AddButton>
+
+            <div className={styles.editButtonWrapper}>
+              <AddButton onClick={() => handleEditClick()}>Confirm</AddButton>
+              <AddButton onClick={() => setEditModalToggle(false)}>
+                Abort
+              </AddButton>
+            </div>
           </div>
         </section>
       )}
@@ -206,7 +213,10 @@ export default function Home(): JSX.Element {
       {showCollectionModalToggle && (
         <section className={styles.modal} id="modal">
           <div className={styles.collectionModal}>
-            <Header>Cards in: {collectionTitle}</Header>
+            <Header>
+              Cards in
+              <HeaderSpacer /> {collectionTitle}
+            </Header>
 
             <AddButton onClick={() => setShowCollectioModalToggle(false)}>
               Abort
