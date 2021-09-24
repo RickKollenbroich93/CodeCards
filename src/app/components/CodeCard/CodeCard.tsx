@@ -15,7 +15,11 @@ export type CardProps = {
   description?: string;
   onDeleteClick?: () => void;
   onEditClick?: () => void;
-  cardCollections: { children: string; language: string }[];
+  cardCollections: {
+    children: string;
+    language: string;
+    onClick?: () => void;
+  }[];
 };
 
 export default function CodeCard({

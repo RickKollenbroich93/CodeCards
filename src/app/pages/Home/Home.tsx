@@ -17,8 +17,8 @@ export default function Home(): JSX.Element {
   //Modal Toggle useStates
   const [deleteModalToggle, setDeleteModalToggle] = useState(false);
   const [editModalToggle, setEditModalToggle] = useState(false);
-  // const [showCollectionModalToggle, setShowCollectioModalToggle] =
-  //   useState(false);
+  const [showCollectionModalToggle, setShowCollectioModalToggle] =
+    useState(false);
   // Modal Toggle useStates END
 
   //EditCard useStates
@@ -80,6 +80,26 @@ export default function Home(): JSX.Element {
   function handleChange(value: string) {
     setContent(value);
   }
+  //BAUSTELLE -----------------------------------------------------------<HERE>
+  const [showCollection, setShowCollection] = useState<string>('');
+  const [collectionTitle, setCollectionTitle] = useState<string>('');
+  function buildCollection(
+    cardCollection: { children: string; language: string }[]
+  ) {
+    const useCollections = cardCollection.map((collection) => {
+      return {
+        children: collection.children,
+        language: collection.language,
+        onClick: () => {
+          setShowCollection(collection.children),
+            setShowCollectioModalToggle(true),
+            setCollectionTitle(collection.children);
+        },
+      };
+    });
+    return useCollections;
+  }
+  //BAUSTELLE -----------------------------------------------------------<HERE>
 
   return (
     <div className={styles.container}>
@@ -105,7 +125,7 @@ export default function Home(): JSX.Element {
               language={card.language}
               content={card.content}
               title={card.title}
-              cardCollections={card.collections}
+              cardCollections={buildCollection(card.collections)}
               onEditClick={() => {
                 setEditModalToggle(true),
                   setContent(card.content),
@@ -177,6 +197,18 @@ export default function Home(): JSX.Element {
           <div className={styles.editButtonWrapper}>
             <AddButton onClick={() => handleEditClick()}>Confirm</AddButton>
             <AddButton onClick={() => setEditModalToggle(false)}>
+              Abort
+            </AddButton>
+          </div>
+        </section>
+      )}
+      {/* BAUSTELLE ----------------------------------------------------------------<HERE> */}
+      {showCollectionModalToggle && (
+        <section className={styles.modal} id="modal">
+          <div className={styles.collectionModal}>
+            <Header>Cards in: {collectionTitle}</Header>
+
+            <AddButton onClick={() => setShowCollectioModalToggle(false)}>
               Abort
             </AddButton>
           </div>
