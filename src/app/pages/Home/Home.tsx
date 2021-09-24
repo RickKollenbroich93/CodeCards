@@ -102,6 +102,7 @@ export default function Home(): JSX.Element {
     });
     return useCollections;
   }
+  console.log(showCollection);
   //BAUSTELLE -----------------------------------------------------------<END>
 
   return (
