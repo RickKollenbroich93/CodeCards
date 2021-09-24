@@ -26,8 +26,10 @@ export default function useCodeCard(): {
     );
   }
   function editCodeCard(oldCodeCard: CodeCards, newCodeCard: CodeCards) {
-    removeCodeCard(oldCodeCard);
-    addCodeCard(newCodeCard);
+    setCodeCards([
+      ...codeCards.filter((codeCard) => codeCard.title !== oldCodeCard.title),
+      newCodeCard,
+    ]);
   }
 
   return { codeCards, addCodeCard, removeCodeCard, editCodeCard };
