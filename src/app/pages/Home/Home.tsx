@@ -12,6 +12,7 @@ import useCodeCard from '../../hooks/useAddCard';
 import type { CodeCards } from '../../types';
 import AddButton from '../../components/Buttons/AddButton/AddButton';
 import CodeField from '../../components/CodeField/CodeField';
+import SpinnerIcon from '../../components/assets/Spinner';
 
 export default function Home(): JSX.Element {
   //Modal Toggle useStates
@@ -107,6 +108,9 @@ export default function Home(): JSX.Element {
 
   return (
     <div className={styles.container}>
+      <SpinnerIcon className={styles.bigSpinner} />
+      <SpinnerIcon className={styles.middleSpinner} />
+      <SpinnerIcon className={styles.smallSpinner} />
       <section className={styles.headerSection}>
         <Header className={styles.headerPos}>
           code
@@ -157,7 +161,7 @@ export default function Home(): JSX.Element {
           </section>
         )}
       </section>
-      <section>
+      <section className={styles.navSection}>
         <Navigation activeLink="home"></Navigation>
       </section>
       {deleteModalToggle && (

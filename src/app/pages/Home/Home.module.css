@@ -4,12 +4,14 @@
   background-color: var(--bg-primary);
   overflow: hidden;
   gap: 15px;
+  position: relative;
   grid-template-rows: auto 1fr;
 }
 .headerSection {
   display: grid;
   gap: 10px;
   padding: 1rem 1rem 2rem 1rem;
+  z-index: 1;
 }
 .headerPos {
   justify-self: center;
@@ -22,12 +24,16 @@
   gap: 2rem;
   padding: 1rem;
   overflow: scroll;
+  z-index: 1;
 }
 .warning {
   font-size: 2rem;
   font-family: var(--font-face);
   color: var(--text-primary);
   text-align: center;
+}
+.navSection {
+  z-index: 1;
 }
 .modal,
 .modalEdit {
@@ -91,4 +97,28 @@
   .modalEdit {
     padding-top: 1rem;
   }
+}
+.bigSpinner {
+  position: absolute;
+  top: -100px;
+  left: -250px;
+  height: 400px;
+  width: 400px;
+  overflow: hidden;
+}
+.smallSpinner {
+  position: absolute;
+  top: -150px;
+  right: -100px;
+  height: 300px;
+  width: 300px;
+  overflow: hidden;
+}
+.middleSpinner {
+  position: absolute;
+  bottom: 0;
+  right: -75px;
+  height: 150px;
+  width: 150px;
+  overflow: hidden;
 }
