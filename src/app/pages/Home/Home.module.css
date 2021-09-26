@@ -33,7 +33,7 @@
   text-align: center;
 }
 .navSection {
-  z-index: 1;
+  z-index: 3;
 }
 .modal,
 .modalEdit {
@@ -100,11 +100,14 @@
 }
 .bigSpinner {
   position: absolute;
-  top: -100px;
+  top: -50px;
   left: -250px;
-  height: 400px;
-  width: 400px;
+  height: 450px;
+  width: 450px;
   overflow: hidden;
+  -webkit-animation: spin 25s linear infinite;
+  -moz-animation: spin 25s linear infinite;
+  animation: spin 25s linear infinite;
 }
 .smallSpinner {
   position: absolute;
@@ -113,6 +116,9 @@
   height: 300px;
   width: 300px;
   overflow: hidden;
+  -webkit-animation: spin 18s linear infinite;
+  -moz-animation: spin 18s linear infinite;
+  animation: spin 18s linear infinite;
 }
 .middleSpinner {
   position: absolute;
@@ -121,4 +127,24 @@
   height: 150px;
   width: 150px;
   overflow: hidden;
+  -webkit-animation: spin 14s linear infinite;
+  -moz-animation: spin 14s linear infinite;
+  animation: spin 14s linear infinite;
+  z-index: 2;
+}
+@-moz-keyframes spin {
+  100% {
+    -moz-transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
 }
