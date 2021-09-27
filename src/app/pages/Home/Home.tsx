@@ -83,7 +83,6 @@ export default function Home(): JSX.Element {
     setShowEditModal(false);
   }
   // EDIT CARD ----------------------------------------------------------<END>
-  // BAUARBEITEN ----------------------------------------------------------<Start>
   const [showCollection, setShowCollection] = useState<string>('');
   const [collectionTitle, setCollectionTitle] = useState<string>('');
   function buildCollection(
@@ -103,7 +102,12 @@ export default function Home(): JSX.Element {
     return useCollections;
   }
   console.log(showCollection);
-  //BAUSTELLE -----------------------------------------------------------<END>
+  const collectionFilteredCards = allCodeCards.filter((card) =>
+    card.collections.some(
+      (filteredCard) =>
+        filteredCard.children.toLowerCase() === showCollection.toLowerCase()
+    )
+  );
 
   return (
     <div className={styles.container}>
@@ -212,19 +216,25 @@ export default function Home(): JSX.Element {
           </div>
         </section>
       )}
-      {/* BAUSTELLE ----------------------------------------------------------------<HERE> */}
       {showCollectionModal && (
-        <section className={styles.modal} id="modal">
-          <div className={styles.collectionModal}>
-            <Header>
-              Cards in
-              <HeaderSpacer /> {collectionTitle}
-            </Header>
-
-            <AddButton onClick={() => setShowCollectioModal(false)}>
-              Abort
-            </AddButton>
-          </div>
+        <section className={styles.cardsModal} id="modal">
+          <Header>
+            Cards in
+            <HeaderSpacer /> {collectionTitle}
+          </Header>
+          <section className={styles.modalCard}>
+            {collectionFilteredCards.map((card) => (
+              <CodeCard
+                language={card.language}
+                content={card.content}
+                title={card.title}
+                cardCollections={card.collections}
+              />
+            ))}
+          </section>
+          <AddButton onClick={() => setShowCollectioModal(false)}>
+            Abort
+          </AddButton>
         </section>
       )}
     </div>
