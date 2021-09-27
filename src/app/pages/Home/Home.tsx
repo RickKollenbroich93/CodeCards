@@ -155,7 +155,6 @@ export default function Home(): JSX.Element {
           ))}
         {filteredCards.length === 0 && (
           <section className={styles.warning}>
-            <p>!!!SORRY!!! </p>
             <p>You don`t have any {selectedLanguage.toUpperCase()} Cards.</p>
           </section>
         )}

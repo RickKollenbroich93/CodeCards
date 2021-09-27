@@ -113,7 +113,6 @@ export default function Collections(): JSX.Element {
         )}
         {filteredCollections.length === 0 && (
           <div className={styles.noCollections}>
-            <p>!!!Sorry!!!</p>
             <p>
               You don`t have any {selectedLanguage.toUpperCase()} Collections
             </p>
