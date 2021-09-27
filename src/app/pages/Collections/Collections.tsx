@@ -49,15 +49,15 @@ export default function Collections(): JSX.Element {
       language: Allcollections.language,
       editable: true,
       onDeleteClick: () => {
-        setModalToggleDelete(true), setDeleteCollection(Allcollections);
+        setShowDeleteModal(true), setDeleteCollection(Allcollections);
       },
     };
   });
   //All Collections END
 
-  function handleDeleteClick(deleteCollection: Collection) {
-    removeCollection(deleteCollection);
-    setModalToggleDelete(false);
+  function handleDeleteClick(collection: Collection) {
+    removeCollection(collection);
+    setShowDeleteModal(false);
   }
   //Filter Collections by Language
   const filteredCollections = tagCollections.filter(
@@ -73,15 +73,15 @@ export default function Collections(): JSX.Element {
   //Searched Collection END
 
   //Modal function
-  const [modalToggle, setModalToggle] = useState(false);
-  const [modalToggleDelete, setModalToggleDelete] = useState(false);
+  const [showAddModal, setShowAddModal] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
   function handleModal() {
     const collection = {
       language: selectedLanguageModal,
       name: addNewCollection,
     };
     addCollection(collection);
-    setModalToggle(!modalToggle);
+    setShowAddModal(!showAddModal);
     setAddNewCollection('');
   }
   //Modal function END
@@ -123,9 +123,9 @@ export default function Collections(): JSX.Element {
       <AddButton
         type="button"
         children="Add Collection"
-        onClick={() => setModalToggle(true)}
+        onClick={() => setShowAddModal(true)}
       />
-      {modalToggle && (
+      {showAddModal && (
         <section className={styles.modal}>
           <form className={styles.modalContent}>
             <Header className={styles.headerPos}>
@@ -146,14 +146,14 @@ export default function Collections(): JSX.Element {
             <AddButton
               className={styles.addButtonPos}
               type="button"
-              onClick={() => setModalToggle(false)}
+              onClick={() => setShowAddModal(false)}
             >
               Close
             </AddButton>
           </form>
         </section>
       )}
-      {modalToggleDelete && (
+      {showDeleteModal && (
         <section className={styles.modal} id="modal">
           <div className={styles.warning}>
             <p>DELETE</p>
@@ -163,7 +163,7 @@ export default function Collections(): JSX.Element {
               <AddButton onClick={() => handleDeleteClick(deleteCollection)}>
                 Yes
               </AddButton>
-              <AddButton onClick={() => setModalToggleDelete(false)}>
+              <AddButton onClick={() => setShowDeleteModal(false)}>
                 No
               </AddButton>
             </div>

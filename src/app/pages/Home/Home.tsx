@@ -16,10 +16,9 @@ import SpinnerIcon from '../../components/assets/Spinner';
 
 export default function Home(): JSX.Element {
   //Modal Toggle useStates
-  const [deleteModalToggle, setDeleteModalToggle] = useState(false);
-  const [editModalToggle, setEditModalToggle] = useState(false);
-  const [showCollectionModalToggle, setShowCollectioModalToggle] =
-    useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [showCollectionModal, setShowCollectioModal] = useState(false);
   // Modal Toggle useStates END
 
   //EditCard useStates
@@ -64,7 +63,7 @@ export default function Home(): JSX.Element {
 
   function handleDeleteClick(card: CodeCards) {
     removeCodeCard(card);
-    setDeleteModalToggle(false);
+    setShowDeleteModal(false);
   }
   function handleChange(value: string) {
     setContent(value);
@@ -81,7 +80,7 @@ export default function Home(): JSX.Element {
     console.log(deleteCard);
     editCodeCard(deleteCard, editCard);
 
-    setEditModalToggle(false);
+    setShowEditModal(false);
   }
   // EDIT CARD ----------------------------------------------------------<END>
   // BAUARBEITEN ----------------------------------------------------------<Start>
@@ -96,7 +95,7 @@ export default function Home(): JSX.Element {
         language: collection.language,
         onClick: () => {
           setShowCollection(collection.children),
-            setShowCollectioModalToggle(true),
+            setShowCollectioModal(true),
             setCollectionTitle(collection.children);
         },
       };
@@ -135,13 +134,13 @@ export default function Home(): JSX.Element {
               title={card.title}
               cardCollections={buildCollection(card.collections)}
               onEditClick={() => {
-                setEditModalToggle(true),
+                setShowEditModal(true),
                   setContent(card.content),
                   setNewTitle(card.title),
                   setDeleteCard(card);
               }}
               onDeleteClick={() => {
-                setDeleteModalToggle(true), setDeleteCard(card);
+                setShowDeleteModal(true), setDeleteCard(card);
               }}
             />
           ))}
@@ -164,7 +163,7 @@ export default function Home(): JSX.Element {
       <section className={styles.navSection}>
         <Navigation activeLink="home"></Navigation>
       </section>
-      {deleteModalToggle && (
+      {showDeleteModal && (
         <section className={styles.modal} id="modal">
           <div className={styles.warning}>
             <p>DELETE</p>
@@ -174,14 +173,14 @@ export default function Home(): JSX.Element {
               <AddButton onClick={() => handleDeleteClick(deleteCard)}>
                 Yes
               </AddButton>
-              <AddButton onClick={() => setDeleteModalToggle(false)}>
+              <AddButton onClick={() => setShowDeleteModal(false)}>
                 No
               </AddButton>
             </div>
           </div>
         </section>
       )}
-      {editModalToggle && (
+      {showEditModal && (
         <section className={styles.modalEdit} id="modal">
           <div className={styles.editModalWrapper}>
             <div className={styles.headerWrapper}>
@@ -207,7 +206,7 @@ export default function Home(): JSX.Element {
 
             <div className={styles.editButtonWrapper}>
               <AddButton onClick={() => handleEditClick()}>Confirm</AddButton>
-              <AddButton onClick={() => setEditModalToggle(false)}>
+              <AddButton onClick={() => setShowEditModal(false)}>
                 Abort
               </AddButton>
             </div>
@@ -215,7 +214,7 @@ export default function Home(): JSX.Element {
         </section>
       )}
       {/* BAUSTELLE ----------------------------------------------------------------<HERE> */}
-      {showCollectionModalToggle && (
+      {showCollectionModal && (
         <section className={styles.modal} id="modal">
           <div className={styles.collectionModal}>
             <Header>
@@ -223,7 +222,7 @@ export default function Home(): JSX.Element {
               <HeaderSpacer /> {collectionTitle}
             </Header>
 
-            <AddButton onClick={() => setShowCollectioModalToggle(false)}>
+            <AddButton onClick={() => setShowCollectioModal(false)}>
               Abort
             </AddButton>
           </div>

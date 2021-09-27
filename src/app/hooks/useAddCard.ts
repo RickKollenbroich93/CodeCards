@@ -16,18 +16,20 @@ export default function useCodeCard(): {
     setCodeCards([...codeCards, codeCard]);
   }
 
-  function removeCodeCard(newCodeCard: CodeCards) {
+  function removeCodeCard(removeCodeCard: CodeCards) {
     setCodeCards(
       codeCards.filter(
         (codeCard) =>
-          codeCard.content !== newCodeCard.content &&
-          codeCard.title !== newCodeCard.title
+          codeCard.content !== removeCodeCard.content &&
+          codeCard.title !== removeCodeCard.title
       )
     );
   }
-  function editCodeCard(oldCodeCard: CodeCards, newCodeCard: CodeCards) {
+  function editCodeCard(deleteCodeCard: CodeCards, newCodeCard: CodeCards) {
     setCodeCards([
-      ...codeCards.filter((codeCard) => codeCard.title !== oldCodeCard.title),
+      ...codeCards.filter(
+        (codeCard) => codeCard.title !== deleteCodeCard.title
+      ),
       newCodeCard,
     ]);
   }
