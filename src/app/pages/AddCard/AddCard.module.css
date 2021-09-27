@@ -38,3 +38,7 @@
   justify-self: center;
   height: 2.5rem;
 }
+.inputWrapper {
+  display: grid;
+  gap: 0.4rem;
+}

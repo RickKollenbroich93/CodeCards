@@ -20,7 +20,7 @@ export default function AddCard(): JSX.Element {
 
   const [selectedLanguage, setSelectedLanguage] = useState('html');
   const [newTitle, setNewTitle] = useState('');
-  const [content, setContent] = useState('//Your Highlighted Code');
+  const [content, setContent] = useState('');
   const [selectedCollections, setSelectedCollections] = useState<
     { children: string; language: string }[]
   >([]);
@@ -87,24 +87,28 @@ export default function AddCard(): JSX.Element {
           history.push('/');
         }}
       >
-        <TagGroup tagList={tagLanguageList} className={styles.taggroup} />
-        <input
-          type="text"
-          placeholder="Card Title"
-          value={newTitle}
-          className={styles.titleInput}
-          onChange={(event) => setNewTitle(event.target.value)}
-        />
-        <CodeField
-          language={selectedLanguage}
-          content={content}
-          onChange={handleChange}
-        />
-        <CollectionTagGroup
-          allCollections={tagCollections}
-          selectedCollections={selectedCollections}
-        />
-        <AddButton type="submit" children="Add new Card" />
+        <div className={styles.inputWrapper}>
+          <TagGroup tagList={tagLanguageList} className={styles.taggroup} />
+          <input
+            type="text"
+            placeholder="Card Title"
+            value={newTitle}
+            className={styles.titleInput}
+            onChange={(event) => setNewTitle(event.target.value)}
+          />
+          <CodeField
+            language={selectedLanguage}
+            content={content}
+            onChange={handleChange}
+          />
+          <CollectionTagGroup
+            allCollections={tagCollections}
+            selectedCollections={selectedCollections}
+          />
+        </div>
+        {newTitle !== '' && content !== '' && (
+          <AddButton type="submit" children="Add new Card" />
+        )}
       </form>
       <section className={styles.navSection}>
         <Navigation activeLink="add" />
