@@ -1,5 +1,6 @@
 .container {
   display: grid;
+  position: relative;
   height: 100vh;
   background-color: var(--bg-primary);
   overflow: hidden;
@@ -10,12 +11,14 @@
   display: grid;
   gap: 10px;
   padding: 1rem 1rem 2rem 1rem;
+  z-index: 1;
 }
 .headerSpacer {
   font-size: 1.5rem;
 }
 .headerPos {
   justify-self: center;
+  z-index: 1;
 }
 .tagGroupPos {
   justify-self: center;
@@ -23,6 +26,7 @@
 .collectionListWrapper {
   justify-self: center;
   overflow: scroll;
+  z-index: 1;
 }
 .noCollections {
   font-size: 1.25rem;
@@ -69,4 +73,31 @@ input[type='search']::-webkit-search-cancel-button {
   font-family: var(--font-face);
   color: var(--text-primary);
   text-align: center;
+}
+.bigSpinner {
+  position: absolute;
+  top: -50px;
+  right: -225px;
+  height: 450px;
+  width: 450px;
+  overflow: hidden;
+  -webkit-animation: spin 25s linear infinite;
+  -moz-animation: spin 25s linear infinite;
+  animation: spin 25s linear infinite;
+}
+@-moz-keyframes spin {
+  100% {
+    -moz-transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
 }

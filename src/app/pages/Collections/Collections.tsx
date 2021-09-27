@@ -11,6 +11,7 @@ import AddButton from '../../components/Buttons/AddButton/AddButton';
 import SubHeader from '../../components/Header/SubHeader/SubHeader';
 import useCollections from '../../hooks/useCollections';
 import type { Collection } from '../../types';
+import SpinnerIcon from '../../components/assets/Spinner';
 
 export default function Collections(): JSX.Element {
   const [selectedLanguage, setSelectedLanguage] = useState<string>('html');
@@ -87,6 +88,7 @@ export default function Collections(): JSX.Element {
 
   return (
     <div className={styles.container}>
+      <SpinnerIcon className={styles.bigSpinner} />
       <section className={styles.headerSection}>
         <Header className={styles.headerPos}>Collections</Header>
         <SearchBar
