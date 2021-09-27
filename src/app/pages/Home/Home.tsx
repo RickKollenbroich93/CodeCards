@@ -84,7 +84,7 @@ export default function Home(): JSX.Element {
     setEditModalToggle(false);
   }
   // EDIT CARD ----------------------------------------------------------<END>
-  // BAUSTELLE ----------------------------------------------------------<Start>
+  // BAUARBEITEN ----------------------------------------------------------<Start>
   const [showCollection, setShowCollection] = useState<string>('');
   const [collectionTitle, setCollectionTitle] = useState<string>('');
   function buildCollection(
