@@ -136,6 +136,7 @@ export default function Home(): JSX.Element {
               language={card.language}
               content={card.content}
               title={card.title}
+              editable="Edit"
               cardCollections={buildCollection(card.collections)}
               onEditClick={() => {
                 setShowEditModal(true),
@@ -154,7 +155,17 @@ export default function Home(): JSX.Element {
               language={card.language}
               content={card.content}
               title={card.title}
-              cardCollections={card.collections}
+              editable="Edit"
+              cardCollections={buildCollection(card.collections)}
+              onEditClick={() => {
+                setShowEditModal(true),
+                  setContent(card.content),
+                  setNewTitle(card.title),
+                  setDeleteCard(card);
+              }}
+              onDeleteClick={() => {
+                setShowDeleteModal(true), setDeleteCard(card);
+              }}
             />
           ))}
         {filteredCards.length === 0 && (
@@ -218,7 +229,7 @@ export default function Home(): JSX.Element {
       )}
       {showCollectionModal && (
         <section className={styles.cardsModal} id="modal">
-          <Header>
+          <Header className={styles.modalHeaderPos}>
             Cards in
             <HeaderSpacer /> {collectionTitle}
           </Header>

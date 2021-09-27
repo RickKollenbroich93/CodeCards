@@ -12,7 +12,7 @@ export type CardProps = {
   language: string;
   content: string;
   title: string;
-  description?: string;
+  editable?: 'nonEdit' | 'Edit';
   onDeleteClick?: () => void;
   onEditClick?: () => void;
   cardCollections: {
@@ -29,6 +29,7 @@ export default function CodeCard({
   onDeleteClick,
   onEditClick,
   cardCollections,
+  editable,
 }: CardProps): JSX.Element {
   useEffect(() => {
     Prism.highlightAll();
@@ -45,14 +46,16 @@ export default function CodeCard({
         <pre className={styles.codeOutput}>
           <code className={`language-${language}`}>{content}</code>
         </pre>
-        <div className={styles.buttonWrapper}>
-          <CardButtons onClick={onDeleteClick}>
-            <DeleteIcon />
-          </CardButtons>
-          <CardButtons onClick={onEditClick}>
-            <EditIcon />
-          </CardButtons>
-        </div>
+        {editable === 'Edit' && (
+          <div className={styles.buttonWrapper}>
+            <CardButtons onClick={onDeleteClick}>
+              <DeleteIcon />
+            </CardButtons>
+            <CardButtons onClick={onEditClick}>
+              <EditIcon />
+            </CardButtons>
+          </div>
+        )}
       </div>
       <TagGroup tagList={cardCollections} />
     </div>
