@@ -5,6 +5,7 @@ export default function useCodeCard(): {
   codeCards: CodeCards[];
   addCodeCard: (codeCard: CodeCards) => void;
   removeCodeCard: (newCodeCard: CodeCards) => void;
+  editCodeCard: (oldCodeCard: CodeCards, newCodeCard: CodeCards) => void;
 } {
   const [codeCards, setCodeCards] = useLocalStorage<CodeCards[]>(
     'codeCards',
@@ -15,15 +16,23 @@ export default function useCodeCard(): {
     setCodeCards([...codeCards, codeCard]);
   }
 
-  function removeCodeCard(newCodeCard: CodeCards) {
+  function removeCodeCard(removeCodeCard: CodeCards) {
     setCodeCards(
       codeCards.filter(
         (codeCard) =>
-          codeCard.content !== newCodeCard.content &&
-          codeCard.title !== newCodeCard.title
+          codeCard.content !== removeCodeCard.content &&
+          codeCard.title !== removeCodeCard.title
       )
     );
   }
+  function editCodeCard(deleteCodeCard: CodeCards, newCodeCard: CodeCards) {
+    setCodeCards([
+      ...codeCards.filter(
+        (codeCard) => codeCard.title !== deleteCodeCard.title
+      ),
+      newCodeCard,
+    ]);
+  }
 
-  return { codeCards, addCodeCard, removeCodeCard };
+  return { codeCards, addCodeCard, removeCodeCard, editCodeCard };
 }

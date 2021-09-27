@@ -31,6 +31,8 @@
 .tagList {
   display: grid;
   gap: 10px;
+  padding-right: 2rem;
+  padding-left: 2rem;
 }
 .headerModal {
   justify-self: center;

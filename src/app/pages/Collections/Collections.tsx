@@ -10,6 +10,8 @@ import Navigation from '../../components/Navigation/Navigation';
 import AddButton from '../../components/Buttons/AddButton/AddButton';
 import SubHeader from '../../components/Header/SubHeader/SubHeader';
 import useCollections from '../../hooks/useCollections';
+import type { Collection } from '../../types';
+import SpinnerIcon from '../../components/assets/Spinner';
 
 export default function Collections(): JSX.Element {
   const [selectedLanguage, setSelectedLanguage] = useState<string>('html');
@@ -35,17 +37,28 @@ export default function Collections(): JSX.Element {
       active: selectedLanguageModal === language,
     };
   });
-
+  const [deleteCollection, setDeleteCollection] = useState<Collection>({
+    name: '',
+    language: '',
+  });
   //All Collections
-  const { collections, addCollection } = useCollections();
+  const { collections, addCollection, removeCollection } = useCollections();
   const tagCollections = collections.map((Allcollections) => {
     return {
       children: Allcollections.name,
       language: Allcollections.language,
+      editable: true,
+      onDeleteClick: () => {
+        setShowDeleteModal(true), setDeleteCollection(Allcollections);
+      },
     };
   });
   //All Collections END
 
+  function handleDeleteClick(collection: Collection) {
+    removeCollection(collection);
+    setShowDeleteModal(false);
+  }
   //Filter Collections by Language
   const filteredCollections = tagCollections.filter(
     (collections) => collections.language === selectedLanguage
@@ -60,20 +73,22 @@ export default function Collections(): JSX.Element {
   //Searched Collection END
 
   //Modal function
-  const [modalToggle, setModalToggle] = useState(false);
+  const [showAddModal, setShowAddModal] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
   function handleModal() {
     const collection = {
       language: selectedLanguageModal,
       name: addNewCollection,
     };
     addCollection(collection);
-    setModalToggle(!modalToggle);
+    setShowAddModal(!showAddModal);
     setAddNewCollection('');
   }
   //Modal function END
 
   return (
     <div className={styles.container}>
+      <SpinnerIcon className={styles.bigSpinner} />
       <section className={styles.headerSection}>
         <Header className={styles.headerPos}>Collections</Header>
         <SearchBar
@@ -108,9 +123,9 @@ export default function Collections(): JSX.Element {
       <AddButton
         type="button"
         children="Add Collection"
-        onClick={() => setModalToggle(true)}
+        onClick={() => setShowAddModal(true)}
       />
-      {modalToggle && (
+      {showAddModal && (
         <section className={styles.modal}>
           <form className={styles.modalContent}>
             <Header className={styles.headerPos}>
@@ -128,7 +143,31 @@ export default function Collections(): JSX.Element {
               searchValue={addNewCollection}
               onChange={(event) => setAddNewCollection(event.target.value)}
             />
+            <AddButton
+              className={styles.addButtonPos}
+              type="button"
+              onClick={() => setShowAddModal(false)}
+            >
+              Close
+            </AddButton>
           </form>
+        </section>
+      )}
+      {showDeleteModal && (
+        <section className={styles.modal} id="modal">
+          <div className={styles.warning}>
+            <p>DELETE</p>
+            <p className={styles.titleColor}>" {deleteCollection.name} "</p>
+            <p>Are you sure</p>
+            <div className={styles.buttonWrapperModal}>
+              <AddButton onClick={() => handleDeleteClick(deleteCollection)}>
+                Yes
+              </AddButton>
+              <AddButton onClick={() => setShowDeleteModal(false)}>
+                No
+              </AddButton>
+            </div>
+          </div>
         </section>
       )}
       <section>

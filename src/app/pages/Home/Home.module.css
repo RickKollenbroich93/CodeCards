@@ -4,12 +4,14 @@
   background-color: var(--bg-primary);
   overflow: hidden;
   gap: 15px;
+  position: relative;
   grid-template-rows: auto 1fr;
 }
 .headerSection {
   display: grid;
   gap: 10px;
   padding: 1rem 1rem 2rem 1rem;
+  z-index: 1;
 }
 .headerPos {
   justify-self: center;
@@ -22,6 +24,7 @@
   gap: 2rem;
   padding: 1rem;
   overflow: scroll;
+  z-index: 1;
 }
 .warning {
   font-size: 2rem;
@@ -29,7 +32,11 @@
   color: var(--text-primary);
   text-align: center;
 }
-.modal {
+.navSection {
+  z-index: 3;
+}
+.modal,
+.modalEdit {
   position: absolute;
   top: 0;
   left: 0;
@@ -41,6 +48,10 @@
   background-color: rgba(32, 32, 32, 0.65);
   padding-top: 10rem;
 }
+.modalEdit {
+  overflow: scroll;
+}
+
 .titleColor {
   color: var(--color-primary);
 }
@@ -48,4 +59,92 @@
   display: flex;
   gap: 10rem;
   justify-content: center;
+}
+.editButtonWrapper {
+  display: flex;
+  justify-content: space-around;
+}
+.collectionModal {
+  display: grid;
+  justify-content: center;
+}
+.titleInput {
+  background-color: var(--bg-card);
+  border-style: none;
+  font-family: var(--font-face);
+  font-size: 2rem;
+  text-align: center;
+  color: var(--text-secondary);
+  width: 100%;
+  border-radius: 10px;
+  justify-self: center;
+}
+.titleInput:focus {
+  outline: none;
+}
+.editModalWrapper {
+  display: grid;
+}
+.headerWrapper {
+  display: grid;
+  justify-self: center;
+}
+.modalHeaderPos {
+  justify-self: center;
+}
+
+@media only screen and (max-width: 600px) {
+  .modalEdit {
+    padding-top: 1rem;
+  }
+}
+.bigSpinner {
+  position: absolute;
+  top: -50px;
+  left: -250px;
+  height: 450px;
+  width: 450px;
+  overflow: hidden;
+  -webkit-animation: spin 25s linear infinite;
+  -moz-animation: spin 25s linear infinite;
+  animation: spin 25s linear infinite;
+}
+.smallSpinner {
+  position: absolute;
+  top: -150px;
+  right: -100px;
+  height: 300px;
+  width: 300px;
+  overflow: hidden;
+  -webkit-animation: spin 18s linear infinite;
+  -moz-animation: spin 18s linear infinite;
+  animation: spin 18s linear infinite;
+}
+.middleSpinner {
+  position: absolute;
+  bottom: 0;
+  right: -75px;
+  height: 200px;
+  width: 200px;
+  overflow: hidden;
+  -webkit-animation: spin 14s linear infinite;
+  -moz-animation: spin 14s linear infinite;
+  animation: spin 14s linear infinite;
+  z-index: 1;
+}
+@-moz-keyframes spin {
+  100% {
+    -moz-transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
 }

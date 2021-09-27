@@ -39,6 +39,7 @@ export default function CodeField({
               <textarea
                 spellCheck="false"
                 className={styles.textBox}
+                value={content}
                 placeholder="Write your Code here"
                 onChange={(event) => onChange(event.target.value)}
               />
