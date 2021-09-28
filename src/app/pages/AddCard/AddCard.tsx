@@ -13,6 +13,7 @@ import useCollections from '../../hooks/useCollections';
 import useCodeCard from '../../hooks/useAddCard';
 import type { Collection } from '../../types';
 import { useHistory } from 'react-router';
+import SpinnerIcon from '../../components/assets/Spinner';
 
 export default function AddCard(): JSX.Element {
   const { addCodeCard } = useCodeCard();
@@ -72,6 +73,8 @@ export default function AddCard(): JSX.Element {
 
   return (
     <div className={styles.container}>
+      <SpinnerIcon className={styles.bigSpinner} />
+      <SpinnerIcon className={styles.middleSpinner} />
       <section className={styles.headerSection}>
         <Header>
           Add
