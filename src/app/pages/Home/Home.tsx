@@ -20,12 +20,11 @@ export default function Home(): JSX.Element {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const [showCollectionModal, setShowCollectioModal] = useState(false);
-  // Modal Toggle useStates END
 
   //EditCard useStates
   const [newTitle, setNewTitle] = useState('');
   const [content, setContent] = useState('//Your Highlighted Code');
-  //EditCard useStates END
+
   const { codeCards, removeCodeCard, editCodeCard } = useCodeCard();
   const [selectedLanguage, setSelectedLanguage] = useState<string>('html');
   const [searchValue, setSearchValue] = useState<string>('');
@@ -78,7 +77,7 @@ export default function Home(): JSX.Element {
   function handleChange(value: string) {
     setContent(value);
   }
-  // EDIT CARD ----------------------------------------------------------<Start>
+
   function handleEditClick() {
     const editCard = {
       title: newTitle,
@@ -92,7 +91,7 @@ export default function Home(): JSX.Element {
 
     setShowEditModal(false);
   }
-  // EDIT CARD ----------------------------------------------------------<END>
+
   const [showCollection, setShowCollection] = useState<string>('');
   const [collectionTitle, setCollectionTitle] = useState<string>('');
   function buildCollection(
