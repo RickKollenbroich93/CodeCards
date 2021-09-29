@@ -5,6 +5,7 @@
   gap: 15px;
   background-color: var(--bg-primary);
   overflow: hidden;
+  position: relative;
 }
 .codeForm {
   overflow: scroll;
@@ -19,6 +20,7 @@
   height: 100%;
   grid-template-rows: auto auto 1fr;
   overflow: scroll;
+  z-index: 1;
 }
 .titleInput {
   background-color: var(--bg-card);
@@ -41,4 +43,46 @@
 .inputWrapper {
   display: grid;
   gap: 0.4rem;
+}
+.navSection {
+  z-index: 1;
+}
+.middleSpinner {
+  position: absolute;
+  bottom: 0;
+  right: -75px;
+  height: 200px;
+  width: 200px;
+  overflow: hidden;
+  -webkit-animation: spin 14s linear infinite;
+  -moz-animation: spin 14s linear infinite;
+  animation: spin 14s linear infinite;
+  z-index: 1;
+}
+@-moz-keyframes spin {
+  100% {
+    -moz-transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+.bigSpinner {
+  position: absolute;
+  top: -50px;
+  left: -250px;
+  height: 450px;
+  width: 450px;
+  overflow: hidden;
+  -webkit-animation: spin 25s linear infinite;
+  -moz-animation: spin 25s linear infinite;
+  animation: spin 25s linear infinite;
 }

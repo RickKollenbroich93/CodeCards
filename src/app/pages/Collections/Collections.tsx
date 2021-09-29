@@ -15,8 +15,7 @@ import SpinnerIcon from '../../components/assets/Spinner';
 
 export default function Collections(): JSX.Element {
   const [selectedLanguage, setSelectedLanguage] = useState<string>('html');
-  const [selectedLanguageModal, setSelectedLanguageModal] =
-    useState<string>('html');
+
   const [searchValue, setSearchValue] = useState<string>('');
   const [addNewCollection, setAddNewCollection] = useState<string>('');
 
@@ -29,14 +28,7 @@ export default function Collections(): JSX.Element {
       active: selectedLanguage === language,
     };
   });
-  //Select language in Modal
-  const tagLanguageListModal = languageList.map((language) => {
-    return {
-      children: language,
-      onClick: () => setSelectedLanguageModal(language),
-      active: selectedLanguageModal === language,
-    };
-  });
+
   const [deleteCollection, setDeleteCollection] = useState<Collection>({
     name: '',
     language: '',
@@ -77,7 +69,7 @@ export default function Collections(): JSX.Element {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   function handleModal() {
     const collection = {
-      language: selectedLanguageModal,
+      language: selectedLanguage,
       name: addNewCollection,
     };
     addCollection(collection);
@@ -113,7 +105,6 @@ export default function Collections(): JSX.Element {
         )}
         {filteredCollections.length === 0 && (
           <div className={styles.noCollections}>
-            <p>!!!Sorry!!!</p>
             <p>
               You don`t have any {selectedLanguage.toUpperCase()} Collections
             </p>
@@ -135,7 +126,7 @@ export default function Collections(): JSX.Element {
             </Header>
             <TagGroup
               className={styles.tagGroupPos}
-              tagList={tagLanguageListModal}
+              tagList={tagLanguageList}
             />
             <SearchBar
               type="add"

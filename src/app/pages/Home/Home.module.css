@@ -148,3 +148,28 @@
     transform: rotate(360deg);
   }
 }
+.cardsModal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  z-index: 1000;
+  background-color: rgba(32, 32, 32, 0.65);
+  display: grid;
+  height: 100vh;
+  overflow: hidden;
+  gap: 15px;
+  padding: 1rem;
+}
+.modalCard {
+  display: grid;
+  overflow: scroll;
+}
+.scroller {
+  position: absolute;
+  bottom: 15%;
+  right: 15%;
+  z-index: 2;
+}

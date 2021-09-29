@@ -1,4 +1,5 @@
 import React from 'react';
+import CssIcon from '../assets/Css';
 import Tag from './Tag';
 
 export default {
@@ -13,5 +14,8 @@ export const Active = (): JSX.Element => (
 );
 
 export const Inactive = (): JSX.Element => (
-  <Tag onClick={() => alert('Test')}>CSS</Tag>
+  <Tag onClick={() => alert('Test')}>
+    <CssIcon />
+    CSS
+  </Tag>
 );

@@ -13,6 +13,7 @@ import type { CodeCards } from '../../types';
 import AddButton from '../../components/Buttons/AddButton/AddButton';
 import CodeField from '../../components/CodeField/CodeField';
 import SpinnerIcon from '../../components/assets/Spinner';
+import Scroller from '../../components/Scroller/Scroller';
 
 export default function Home(): JSX.Element {
   //Modal Toggle useStates
@@ -39,11 +40,20 @@ export default function Home(): JSX.Element {
   const tagLanguageList = languageList.map((language) => {
     return {
       children: language,
-      onClick: () => setSelectedLanguage(language),
+      onClick: () => {
+        setSelectedLanguage(language), ShowScroller();
+      },
       active: selectedLanguage === language,
     };
   });
-
+  const [showScroller, setShowScroller] = useState<boolean>(false);
+  function ShowScroller() {
+    setShowScroller(true);
+    setTimeout(ShowTimer, 5000);
+  }
+  function ShowTimer() {
+    setShowScroller(false);
+  }
   //Get all CodeCards
   const allCodeCards = codeCards.map((codeCard) => {
     return {
@@ -83,7 +93,6 @@ export default function Home(): JSX.Element {
     setShowEditModal(false);
   }
   // EDIT CARD ----------------------------------------------------------<END>
-  // BAUARBEITEN ----------------------------------------------------------<Start>
   const [showCollection, setShowCollection] = useState<string>('');
   const [collectionTitle, setCollectionTitle] = useState<string>('');
   function buildCollection(
@@ -103,13 +112,21 @@ export default function Home(): JSX.Element {
     return useCollections;
   }
   console.log(showCollection);
-  //BAUSTELLE -----------------------------------------------------------<END>
+  const collectionFilteredCards = allCodeCards.filter((card) =>
+    card.collections.some(
+      (filteredCard) =>
+        filteredCard.children.toLowerCase() === showCollection.toLowerCase()
+    )
+  );
 
   return (
     <div className={styles.container}>
       <SpinnerIcon className={styles.bigSpinner} />
       <SpinnerIcon className={styles.middleSpinner} />
       <SpinnerIcon className={styles.smallSpinner} />
+      {filteredCards.length >= 2 && showScroller && (
+        <Scroller className={styles.scroller} />
+      )}
       <section className={styles.headerSection}>
         <Header className={styles.headerPos}>
           code
@@ -132,6 +149,7 @@ export default function Home(): JSX.Element {
               language={card.language}
               content={card.content}
               title={card.title}
+              editable="Edit"
               cardCollections={buildCollection(card.collections)}
               onEditClick={() => {
                 setShowEditModal(true),
@@ -150,12 +168,21 @@ export default function Home(): JSX.Element {
               language={card.language}
               content={card.content}
               title={card.title}
-              cardCollections={card.collections}
+              editable="Edit"
+              cardCollections={buildCollection(card.collections)}
+              onEditClick={() => {
+                setShowEditModal(true),
+                  setContent(card.content),
+                  setNewTitle(card.title),
+                  setDeleteCard(card);
+              }}
+              onDeleteClick={() => {
+                setShowDeleteModal(true), setDeleteCard(card);
+              }}
             />
           ))}
         {filteredCards.length === 0 && (
           <section className={styles.warning}>
-            <p>!!!SORRY!!! </p>
             <p>You don`t have any {selectedLanguage.toUpperCase()} Cards.</p>
           </section>
         )}
@@ -213,19 +240,25 @@ export default function Home(): JSX.Element {
           </div>
         </section>
       )}
-      {/* BAUSTELLE ----------------------------------------------------------------<HERE> */}
       {showCollectionModal && (
-        <section className={styles.modal} id="modal">
-          <div className={styles.collectionModal}>
-            <Header>
-              Cards in
-              <HeaderSpacer /> {collectionTitle}
-            </Header>
-
-            <AddButton onClick={() => setShowCollectioModal(false)}>
-              Abort
-            </AddButton>
-          </div>
+        <section className={styles.cardsModal} id="modal">
+          <Header className={styles.modalHeaderPos}>
+            Cards in
+            <HeaderSpacer /> {collectionTitle}
+          </Header>
+          <section className={styles.modalCard}>
+            {collectionFilteredCards.map((card) => (
+              <CodeCard
+                language={card.language}
+                content={card.content}
+                title={card.title}
+                cardCollections={card.collections}
+              />
+            ))}
+          </section>
+          <AddButton onClick={() => setShowCollectioModal(false)}>
+            Abort
+          </AddButton>
         </section>
       )}
     </div>
