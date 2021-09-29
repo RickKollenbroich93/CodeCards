@@ -13,6 +13,7 @@ import type { CodeCards } from '../../types';
 import AddButton from '../../components/Buttons/AddButton/AddButton';
 import CodeField from '../../components/CodeField/CodeField';
 import SpinnerIcon from '../../components/assets/Spinner';
+import Scroller from '../../components/Scroller/Scroller';
 
 export default function Home(): JSX.Element {
   //Modal Toggle useStates
@@ -39,11 +40,20 @@ export default function Home(): JSX.Element {
   const tagLanguageList = languageList.map((language) => {
     return {
       children: language,
-      onClick: () => setSelectedLanguage(language),
+      onClick: () => {
+        setSelectedLanguage(language), ShowScroller();
+      },
       active: selectedLanguage === language,
     };
   });
-
+  const [showScroller, setShowScroller] = useState<boolean>(false);
+  function ShowScroller() {
+    setShowScroller(true);
+    setTimeout(ShowTimer, 5000);
+  }
+  function ShowTimer() {
+    setShowScroller(false);
+  }
   //Get all CodeCards
   const allCodeCards = codeCards.map((codeCard) => {
     return {
@@ -114,6 +124,9 @@ export default function Home(): JSX.Element {
       <SpinnerIcon className={styles.bigSpinner} />
       <SpinnerIcon className={styles.middleSpinner} />
       <SpinnerIcon className={styles.smallSpinner} />
+      {filteredCards.length >= 2 && showScroller && (
+        <Scroller className={styles.scroller} />
+      )}
       <section className={styles.headerSection}>
         <Header className={styles.headerPos}>
           code
