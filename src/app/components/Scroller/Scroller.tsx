@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './Scroller.module.css';
 
 type Scroller = {
-  className: string;
+  className?: string;
 };
 
 export default function Scroller({ className }: Scroller): JSX.Element {
