@@ -85,8 +85,6 @@ export default function Home(): JSX.Element {
       language: deleteCard.language,
       collections: deleteCard.collections,
     };
-    console.log(editCard);
-    console.log(deleteCard);
     editCodeCard(deleteCard, editCard);
 
     setShowEditModal(false);
@@ -110,7 +108,7 @@ export default function Home(): JSX.Element {
     });
     return useCollections;
   }
-  console.log(showCollection);
+
   const collectionFilteredCards = allCodeCards.filter((card) =>
     card.collections.some(
       (filteredCard) =>
